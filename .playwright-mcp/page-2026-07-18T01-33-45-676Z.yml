@@ -1,0 +1,87 @@
+- generic [ref=f19e3]:
+  - text:       
+  - main [ref=f19e4]:
+    - navigation [ref=f19e5]:
+      - generic [ref=f19e6]:
+        - generic [ref=f19e7]:
+          - generic [ref=f19e8]: 
+          - text: 17/07/2026
+        - list [ref=f19e9]:
+          - listitem [ref=f19e10]:
+            - link " Administrador del Sistema administrador" [ref=f19e11] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=f19e12]: 
+              - text: Administrador del Sistema
+              - generic [ref=f19e13]: administrador
+            - text:  
+    - generic [ref=f19e14]:
+      - heading " Registrar Pago" [level=4] [ref=f19e15]:
+        - generic [ref=f19e16]: 
+        - text: Registrar Pago
+      - link " Volver" [ref=f19e17] [cursor=pointer]:
+        - /url: /pagos/
+        - generic [ref=f19e18]: 
+        - text: Volver
+    - generic [ref=f19e19]:
+      - generic [ref=f19e21]:
+        - generic [ref=f19e22]: Datos del Pago
+        - generic [ref=f19e24]:
+          - generic [ref=f19e25]:
+            - generic [ref=f19e26]: Préstamo
+            - combobox [ref=f19e27]:
+              - option "PRE-0001 - Maria Elena Quispe Mamani (S/2,000.00)" [selected]
+              - option "PRE-0002 - Maria Elena Quispe Mamani (S/3,000.00)"
+              - option "PRE-0003 - Carlos Alberto Huaman Condori (S/1,500.00)"
+              - option "PRE-0004 - Juana Rosa Lopez Garcia (S/5,000.00)"
+          - generic [ref=f19e28]:
+            - generic [ref=f19e29]: Seleccione las cuotas a pagar
+            - paragraph [ref=f19e31]: Seleccione un préstamo para ver sus cuotas pendientes.
+          - 'heading "Total a Pagar: S/ 0.00" [level=5] [ref=f19e33]'
+          - separator [ref=f19e34]
+          - generic [ref=f19e35]:
+            - generic [ref=f19e36]:
+              - generic [ref=f19e37]: Método de Pago
+              - combobox "Método de Pago" [ref=f19e38]:
+                - option "Efectivo" [selected]
+                - option "Transferencia"
+                - option "Depósito"
+                - option "Tarjeta"
+                - option "App Móvil"
+            - generic [ref=f19e39]:
+              - generic [ref=f19e40]: N° Operación
+              - textbox "N° Operación" [ref=f19e41]
+            - generic [ref=f19e42]:
+              - generic [ref=f19e43]: Monto Total (S/)
+              - spinbutton [ref=f19e44]
+          - generic [ref=f19e45]:
+            - generic [ref=f19e46]: Observaciones
+            - textbox "Observaciones" [ref=f19e47]
+          - generic [ref=f19e48]:
+            - button " Registrar Pago" [ref=f19e49] [cursor=pointer]:
+              - generic [ref=f19e50]: 
+              - text: Registrar Pago
+            - link "Cancelar" [ref=f19e51] [cursor=pointer]:
+              - /url: /pagos/
+      - generic [ref=f19e53]:
+        - generic [ref=f19e54]: Resumen
+        - generic [ref=f19e55]:
+          - paragraph [ref=f19e56]:
+            - strong [ref=f19e57]: "Préstamo:"
+            - text: PRE-0001
+          - paragraph [ref=f19e58]:
+            - strong [ref=f19e59]: "Cliente:"
+            - text: Maria Elena Quispe Mamani
+          - paragraph [ref=f19e60]:
+            - strong [ref=f19e61]: "Saldo:"
+            - text: (S/2,000.00)
+          - paragraph [ref=f19e62]:
+            - strong [ref=f19e63]: "Cuotas seleccionadas:"
+            - text: "0"
+          - separator [ref=f19e64]
+          - paragraph [ref=f19e65]:
+            - strong [ref=f19e66]: "Total Cuotas:"
+            - text: S/ 0.00
+          - paragraph [ref=f19e67]:
+            - strong [ref=f19e68]: "Mora:"
+            - text: S/ 0.00
+    - generic [ref=f19e69]: © 2026 MiCredit - Sistema de Gestión de Microcréditos v1.0

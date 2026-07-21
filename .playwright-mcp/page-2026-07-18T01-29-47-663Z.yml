@@ -1,0 +1,62 @@
+- generic [ref=f7e3]:
+  - text:       
+  - main [ref=f7e4]:
+    - navigation [ref=f7e5]:
+      - generic [ref=f7e6]:
+        - generic [ref=f7e7]:
+          - generic [ref=f7e8]: 
+          - text: 17/07/2026
+        - list [ref=f7e9]:
+          - listitem [ref=f7e10]:
+            - link " Administrador del Sistema administrador" [ref=f7e11] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=f7e12]: 
+              - text: Administrador del Sistema
+              - generic [ref=f7e13]: administrador
+            - text:  
+    - generic [ref=f7e14]:
+      - heading " Evaluar Préstamo PRE-0005" [level=4] [ref=f7e15]:
+        - generic [ref=f7e16]: 
+        - text: Evaluar Préstamo PRE-0005
+      - link " Volver" [ref=f7e17] [cursor=pointer]:
+        - /url: /prestamos/5
+        - generic [ref=f7e18]: 
+        - text: Volver
+    - generic [ref=f7e19]:
+      - generic [ref=f7e21]:
+        - generic [ref=f7e22]: Datos del Préstamo
+        - table [ref=f7e24]:
+          - rowgroup [ref=f7e25]:
+            - row [ref=f7e26]:
+              - rowheader "Cliente:" [ref=f7e27]
+              - cell "Roberto Carlos Test" [ref=f7e28]
+            - row [ref=f7e29]:
+              - rowheader "Monto Solicitado:" [ref=f7e30]
+              - cell "S/ 2,500.00" [ref=f7e31]
+            - row [ref=f7e32]:
+              - rowheader "Plazo:" [ref=f7e33]
+              - cell "6 meses" [ref=f7e34]
+            - row [ref=f7e35]:
+              - rowheader "Tasa:" [ref=f7e36]
+              - cell "3.00%" [ref=f7e37]
+            - row [ref=f7e38]:
+              - rowheader "Método:" [ref=f7e39]
+              - cell "Frances" [ref=f7e40]
+      - generic [ref=f7e42]:
+        - generic [ref=f7e43]: Decisión
+        - generic [ref=f7e45]:
+          - generic [ref=f7e46]:
+            - generic [ref=f7e47]: Monto Aprobado (S/)
+            - spinbutton "Monto Aprobado (S/)" [ref=f7e48]: "2500.00"
+          - generic [ref=f7e49]:
+            - button " Aprobar" [ref=f7e51] [cursor=pointer]:
+              - generic [ref=f7e52]: 
+              - text: Aprobar
+            - button " Rechazar" [ref=f7e54] [cursor=pointer]:
+              - generic [ref=f7e55]: 
+              - text: Rechazar
+          - generic [ref=f7e56]:
+            - generic [ref=f7e57]: Motivo de Rechazo
+            - textbox "Motivo de Rechazo" [ref=f7e58]:
+              - /placeholder: Obligatorio si rechaza
+    - generic [ref=f7e59]: © 2026 MiCredit - Sistema de Gestión de Microcréditos v1.0

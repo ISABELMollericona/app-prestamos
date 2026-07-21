@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+{% block title %}{{ titulo }} - MiCredit{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h4 class="mb-0"><i class="bi bi-person"></i> {{ titulo }}</h4>
+    <a href="{{ url_for('clientes.listar') }}" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Volver</a>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            <div class="row g-3">
+                <div class="col-md-6">
+                    {{ form.nombre_completo.label(class="form-label") }}
+                    {{ form.nombre_completo(class="form-control" + (" is-invalid" if form.nombre_completo.errors else "")) }}
+                    {% for e in form.nombre_completo.errors %}<div class="invalid-feedback">{{ e }}</div>{% endfor %}
+                </div>
+                <div class="col-md-3">
+                    {{ form.tipo_documento.label(class="form-label") }}
+                    {{ form.tipo_documento(class="form-select") }}
+                </div>
+                <div class="col-md-3">
+                    {{ form.numero_documento.label(class="form-label") }}
+                    {{ form.numero_documento(class="form-control" + (" is-invalid" if form.numero_documento.errors else "")) }}
+                    {% for e in form.numero_documento.errors %}<div class="invalid-feedback">{{ e }}</div>{% endfor %}
+                </div>
+                <div class="col-md-3">
+                    {{ form.fecha_nacimiento.label(class="form-label") }}
+                    {{ form.fecha_nacimiento(class="form-control", type="date") }}
+                </div>
+                <div class="col-md-2">
+                    {{ form.genero.label(class="form-label") }}
+                    {{ form.genero(class="form-select") }}
+                </div>
+                <div class="col-md-2">
+                    {{ form.estado_civil.label(class="form-label") }}
+                    {{ form.estado_civil(class="form-select") }}
+                </div>
+                <div class="col-md-3">
+                    {{ form.ocupacion.label(class="form-label") }}
+                    {{ form.ocupacion(class="form-control") }}
+                </div>
+                <div class="col-md-2">
+                    {{ form.ingresos_mensuales.label(class="form-label") }}
+                    {{ form.ingresos_mensuales(class="form-control") }}
+                </div>
+            </div>
+
+            <hr class="my-4">
+            <h6 class="text-muted">Contacto</h6>
+            <div class="row g-3">
+                <div class="col-md-3">
+                    {{ form.telefono.label(class="form-label") }}
+                    {{ form.telefono(class="form-control") }}
+                </div>
+                <div class="col-md-3">
+                    {{ form.celular.label(class="form-label") }}
+                    {{ form.celular(class="form-control") }}
+                </div>
+                <div class="col-md-3">
+                    {{ form.email.label(class="form-label") }}
+                    {{ form.email(class="form-control" + (" is-invalid" if form.email.errors else "")) }}
+                    {% for e in form.email.errors %}<div class="invalid-feedback">{{ e }}</div>{% endfor %}
+                </div>
+            </div>
+
+            <hr class="my-4">
+            <h6 class="text-muted">Dirección</h6>
+            <div class="row g-3">
+                <div class="col-md-6">
+                    {{ form.direccion.label(class="form-label") }}
+                    {{ form.direccion(class="form-control", rows=2) }}
+                </div>
+            </div>
+            <div class="row g-3 mt-1">
+                <div class="col-md-4">
+                    {{ form.distrito.label(class="form-label") }}
+                    {{ form.distrito(class="form-control") }}
+                </div>
+                <div class="col-md-4">
+                    {{ form.provincia.label(class="form-label") }}
+                    {{ form.provincia(class="form-control") }}
+                </div>
+                <div class="col-md-4">
+                    {{ form.departamento.label(class="form-label") }}
+                    {{ form.departamento(class="form-control") }}
+                </div>
+            </div>
+
+            <hr class="my-4">
+            <h6 class="text-muted">Referencia</h6>
+            <div class="row g-3">
+                <div class="col-md-6">
+                    {{ form.referencia_nombre.label(class="form-label") }}
+                    {{ form.referencia_nombre(class="form-control") }}
+                </div>
+                <div class="col-md-3">
+                    {{ form.referencia_telefono.label(class="form-label") }}
+                    {{ form.referencia_telefono(class="form-control") }}
+                </div>
+            </div>
+
+            <hr class="my-4">
+            <div class="row g-3">
+                <div class="col-12">
+                    {{ form.observaciones.label(class="form-label") }}
+                    {{ form.observaciones(class="form-control", rows=3) }}
+                </div>
+            </div>
+
+            <div class="mt-4">
+                <button type="submit" class="btn btn-primary"><i class="bi bi-save"></i> {{ form.submit.label.text }}</button>
+                <a href="{{ url_for('clientes.listar') }}" class="btn btn-outline-secondary">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

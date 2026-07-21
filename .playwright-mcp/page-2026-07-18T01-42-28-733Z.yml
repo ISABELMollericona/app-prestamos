@@ -1,0 +1,39 @@
+- generic [ref=f32e3]:
+  - text:       
+  - main [ref=f32e4]:
+    - navigation [ref=f32e5]:
+      - generic [ref=f32e6]:
+        - generic [ref=f32e7]:
+          - generic [ref=f32e8]: 
+          - text: 17/07/2026
+        - list [ref=f32e9]:
+          - listitem [ref=f32e10]:
+            - link " Administrador del Sistema administrador" [ref=f32e11] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=f32e12]: 
+              - text: Administrador del Sistema
+              - generic [ref=f32e13]: administrador
+            - text:  
+    - heading " Simulador de Préstamos" [level=4] [ref=f32e15]:
+      - generic [ref=f32e16]: 
+      - text: Simulador de Préstamos
+    - generic [ref=f32e17]:
+      - generic [ref=f32e19]:
+        - generic [ref=f32e20]: Parámetros
+        - generic [ref=f32e22]:
+          - generic [ref=f32e23]:
+            - generic [ref=f32e24]: Monto a Solicitar (Bs)
+            - spinbutton [ref=f32e25]
+          - generic [ref=f32e26]:
+            - generic [ref=f32e27]: Tasa de Interés Anual (%)
+            - spinbutton [ref=f32e28]: "36"
+          - generic [ref=f32e29]:
+            - generic [ref=f32e30]: Plazo (Meses)
+            - spinbutton [ref=f32e31]: "12"
+          - button " Calcular" [ref=f32e32] [cursor=pointer]:
+            - generic [ref=f32e33]: 
+            - text: Calcular
+      - generic [ref=f32e36]:
+        - generic [ref=f32e37]: 
+        - paragraph [ref=f32e38]: Ingrese los parámetros y presione "Calcular" para ver la proyección.
+    - generic [ref=f32e39]: © 2026 MiCredit - Sistema de Gestión de Microcréditos v1.0

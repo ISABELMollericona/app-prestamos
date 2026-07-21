@@ -1,0 +1,66 @@
+- generic [ref=f5e3]:
+  - text:       
+  - main [ref=f5e4]:
+    - navigation [ref=f5e5]:
+      - generic [ref=f5e6]:
+        - generic [ref=f5e7]:
+          - generic [ref=f5e8]: 
+          - text: 17/07/2026
+        - list [ref=f5e9]:
+          - listitem [ref=f5e10]:
+            - link " Administrador del Sistema administrador" [ref=f5e11] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=f5e12]: 
+              - text: Administrador del Sistema
+              - generic [ref=f5e13]: administrador
+            - text:  
+    - generic [ref=f5e14]:
+      - heading " Nueva Solicitud" [level=4] [ref=f5e15]:
+        - generic [ref=f5e16]: 
+        - text: Nueva Solicitud
+      - link " Volver" [ref=f5e17] [cursor=pointer]:
+        - /url: /prestamos/
+        - generic [ref=f5e18]: 
+        - text: Volver
+    - generic [ref=f5e21]:
+      - generic [ref=f5e22]:
+        - generic [ref=f5e23]:
+          - generic [ref=f5e24]: Cliente
+          - combobox "Cliente" [ref=f5e25]:
+            - option "Carlos Alberto Huaman Condori (23456789)"
+            - option "Juana Rosa Lopez Garcia (34567890)"
+            - option "Maria Elena Quispe Mamani (12345678)"
+            - option "Roberto Carlos Test (55566677)" [selected]
+        - generic [ref=f5e26]:
+          - generic [ref=f5e27]: Monto Solicitado (S/)
+          - spinbutton "Monto Solicitado (S/)" [ref=f5e28]
+        - generic [ref=f5e29]:
+          - generic [ref=f5e30]: Plazo (Meses)
+          - spinbutton "Plazo (Meses)" [ref=f5e31]
+        - generic [ref=f5e32]:
+          - generic [ref=f5e33]: Tasa de Interés
+          - combobox "Tasa de Interés" [ref=f5e34]:
+            - option "Tasa Estandar Microcredito (3.0% mensual)" [selected]
+            - option "Tasa Preferencial (2.5% mensual)"
+            - option "Tasa Premium (2.0% mensual)"
+        - generic [ref=f5e35]:
+          - generic [ref=f5e36]: Método Amortización
+          - combobox "Método Amortización" [ref=f5e37]:
+            - option "Francés (Cuota Fija)" [selected]
+            - option "Alemán (Amortización Constante)"
+        - generic [ref=f5e38]:
+          - generic [ref=f5e39]: Frecuencia de Pago
+          - combobox "Frecuencia de Pago" [ref=f5e40]:
+            - option "Mensual" [selected]
+            - option "Quincenal"
+            - option "Semanal"
+        - generic [ref=f5e41]:
+          - generic [ref=f5e42]: Observaciones
+          - textbox "Observaciones" [ref=f5e43]
+      - generic [ref=f5e44]:
+        - button " Solicitar Préstamo" [ref=f5e45] [cursor=pointer]:
+          - generic [ref=f5e46]: 
+          - text: Solicitar Préstamo
+        - link "Cancelar" [ref=f5e47] [cursor=pointer]:
+          - /url: /prestamos/
+    - generic [ref=f5e48]: © 2026 MiCredit - Sistema de Gestión de Microcréditos v1.0

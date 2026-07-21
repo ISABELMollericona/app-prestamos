@@ -1,0 +1,78 @@
+- generic [ref=f2e3]:
+  - text:       
+  - main [ref=f2e4]:
+    - navigation [ref=f2e5]:
+      - generic [ref=f2e6]:
+        - generic [ref=f2e7]:
+          - generic [ref=f2e8]: 
+          - text: 17/07/2026
+        - list [ref=f2e9]:
+          - listitem [ref=f2e10]:
+            - link " Administrador del Sistema administrador" [ref=f2e11] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=f2e12]: 
+              - text: Administrador del Sistema
+              - generic [ref=f2e13]: administrador
+            - text:  
+    - generic [ref=f2e14]:
+      - heading " Clientes" [level=4] [ref=f2e15]:
+        - generic [ref=f2e16]: 
+        - text: Clientes
+      - link " Nuevo Cliente" [ref=f2e17] [cursor=pointer]:
+        - /url: /clientes/nuevo
+        - generic [ref=f2e18]: 
+        - text: Nuevo Cliente
+    - generic [ref=f2e20]:
+      - generic [ref=f2e23]:
+        - textbox "Buscar por nombre, documento o celular..." [ref=f2e24]
+        - button "" [ref=f2e25] [cursor=pointer]
+      - table [ref=f2e28]:
+        - rowgroup [ref=f2e29]:
+          - row [ref=f2e30]:
+            - columnheader "Código" [ref=f2e31]
+            - columnheader "Nombre" [ref=f2e32]
+            - columnheader "Documento" [ref=f2e33]
+            - columnheader "Celular" [ref=f2e34]
+            - columnheader "Préstamos" [ref=f2e35]
+            - columnheader "Acciones" [ref=f2e36]
+        - rowgroup [ref=f2e37]:
+          - row [ref=f2e38]:
+            - cell "CLI-0002" [ref=f2e39]
+            - cell [ref=f2e40]:
+              - link "Carlos Alberto Huaman Condori" [ref=f2e41] [cursor=pointer]:
+                - /url: /clientes/2
+            - 'cell "DNI: 23456789" [ref=f2e42]'
+            - cell "976543210" [ref=f2e43]
+            - cell "1" [ref=f2e44]
+            - cell [ref=f2e46]:
+              - link "" [ref=f2e47] [cursor=pointer]:
+                - /url: /clientes/2
+              - link "" [ref=f2e49] [cursor=pointer]:
+                - /url: /clientes/2/editar
+          - row [ref=f2e51]:
+            - cell "CLI-0003" [ref=f2e52]
+            - cell [ref=f2e53]:
+              - link "Juana Rosa Lopez Garcia" [ref=f2e54] [cursor=pointer]:
+                - /url: /clientes/3
+            - 'cell "DNI: 34567890" [ref=f2e55]'
+            - cell "965432109" [ref=f2e56]
+            - cell "1" [ref=f2e57]
+            - cell [ref=f2e59]:
+              - link "" [ref=f2e60] [cursor=pointer]:
+                - /url: /clientes/3
+              - link "" [ref=f2e62] [cursor=pointer]:
+                - /url: /clientes/3/editar
+          - row [ref=f2e64]:
+            - cell "CLI-0001" [ref=f2e65]
+            - cell [ref=f2e66]:
+              - link "Maria Elena Quispe Mamani" [ref=f2e67] [cursor=pointer]:
+                - /url: /clientes/1
+            - 'cell "DNI: 12345678" [ref=f2e68]'
+            - cell "987654321" [ref=f2e69]
+            - cell "2" [ref=f2e70]
+            - cell [ref=f2e72]:
+              - link "" [ref=f2e73] [cursor=pointer]:
+                - /url: /clientes/1
+              - link "" [ref=f2e75] [cursor=pointer]:
+                - /url: /clientes/1/editar
+    - generic [ref=f2e77]: © 2026 MiCredit - Sistema de Gestión de Microcréditos v1.0

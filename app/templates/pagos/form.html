@@ -1,0 +1,164 @@
+{% extends "base.html" %}
+{% block title %}Registrar Pago - MiCredit{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h4 class="mb-0"><i class="bi bi-cash"></i> Registrar Pago</h4>
+    <a href="{{ url_for('pagos.listar') }}" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Volver</a>
+</div>
+
+<div class="row g-3">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">Datos del Pago</div>
+            <div class="card-body">
+                <form method="POST" id="formPago">
+                    {{ form.hidden_tag() }}
+                    <div class="mb-3">
+                        {{ form.prestamo_id.label(class="form-label") }}
+                        {{ form.prestamo_id(class="form-select", id="prestamoSelect") }}
+                    </div>
+
+                    <div id="cuotasContainer" class="mb-3">
+                        <label class="form-label">Seleccione las cuotas a pagar</label>
+                        <div id="cuotasList" class="border rounded p-3 bg-light">
+                            <p class="text-muted mb-0">Seleccione un préstamo para ver sus cuotas pendientes.</p>
+                        </div>
+                        <input type="hidden" name="cuotas_ids" id="cuotasIds">
+                    </div>
+
+                    <div class="text-center mb-3">
+                        <h5>Total a Pagar: <span id="totalPagar" class="text-success">Bs 0.00</span></h5>
+                    </div>
+
+                    <hr>
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            {{ form.metodo_pago.label(class="form-label") }}
+                            {{ form.metodo_pago(class="form-select") }}
+                        </div>
+                        <div class="col-md-4">
+                            {{ form.numero_operacion.label(class="form-label") }}
+                            {{ form.numero_operacion(class="form-control") }}
+                        </div>
+                        <div class="col-md-4">
+                            {{ form.monto_total.label(class="form-label") }}
+                            {{ form.monto_total(class="form-control", id="montoTotalInput", readonly=True) }}
+                        </div>
+                    </div>
+                    <div class="mt-3">
+                        {{ form.observaciones.label(class="form-label") }}
+                        {{ form.observaciones(class="form-control", rows=2) }}
+                    </div>
+                    <div class="mt-4">
+                        <button type="submit" class="btn btn-success"><i class="bi bi-check-lg"></i> {{ form.submit.label.text }}</button>
+                        <a href="{{ url_for('pagos.listar') }}" class="btn btn-outline-secondary">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">Resumen</div>
+            <div class="card-body">
+                <p class="mb-1"><strong>Préstamo:</strong> <span id="resumenPrestamo">-</span></p>
+                <p class="mb-1"><strong>Cliente:</strong> <span id="resumenCliente">-</span></p>
+                <p class="mb-1"><strong>Saldo:</strong> <span id="resumenSaldo">-</span></p>
+                <p class="mb-1"><strong>Cuotas seleccionadas:</strong> <span id="resumenCuotas">0</span></p>
+                <hr>
+                <p class="mb-1"><strong>Total Cuotas:</strong> <span id="resumenTotal">Bs 0.00</span></p>
+                <p class="mb-1"><strong>Mora:</strong> <span id="resumenMora" class="text-danger">Bs 0.00</span></p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+let cuotasSeleccionadas = {};
+let cuotasData = [];
+
+$('#prestamoSelect').change(function() {
+    const prestamoId = $(this).val();
+    if (!prestamoId) return;
+
+    $.getJSON(`/pagos/cuotas/${prestamoId}`, function(data) {
+        cuotasData = data;
+        cuotasSeleccionadas = {};
+        renderCuotas();
+        actualizarResumen();
+    });
+
+    const text = $(this).find('option:selected').text();
+    const parts = text.split(' - ');
+    $('#resumenPrestamo').text(parts[0] || '-');
+    $('#resumenCliente').text(parts[1] ? parts[1].split(' (')[0] : '-');
+    $('#resumenSaldo').text(parts[1] ? '(' + parts[1].split('(')[1] : '-');
+});
+
+function renderCuotas() {
+    if (!cuotasData.length) {
+        $('#cuotasList').html('<p class="text-muted mb-0">No hay cuotas pendientes para este préstamo.</p>');
+        return;
+    }
+
+    let html = '<div class="row g-2">';
+    cuotasData.forEach(function(c) {
+        const checked = cuotasSeleccionadas[c.numero] ? 'checked' : '';
+        const vencida = c.dias_atraso > 0;
+        html += `
+            <div class="col-md-6">
+                <div class="form-check border rounded p-2 ${vencida ? 'border-danger' : ''} ${checked ? 'bg-primary bg-opacity-10' : ''}">
+                    <input class="form-check-input cuota-check" type="checkbox"
+                           value="${c.numero}" ${checked}
+                           data-total="${c.total_cuota}"
+                           data-mora="${c.mora}"
+                           onchange="toggleCuota(${c.numero})">
+                    <label class="form-check-label">
+                        Cuota #${c.numero}
+                        <br><small>Vence: ${c.fecha_vencimiento}</small>
+                        <br><strong>Bs ${c.total_cuota.toFixed(2)}</strong>
+                        ${c.mora > 0 ? `<span class="text-danger">+ Bs ${c.mora.toFixed(2)} mora</span>` : ''}
+                        ${vencida ? '<span class="badge bg-danger">VENCIDA</span>' : ''}
+                    </label>
+                </div>
+            </div>
+        `;
+    });
+    html += '</div>';
+    $('#cuotasList').html(html);
+}
+
+function toggleCuota(num) {
+    if (cuotasSeleccionadas[num]) {
+        delete cuotasSeleccionadas[num];
+    } else {
+        cuotasSeleccionadas[num] = true;
+    }
+    renderCuotas();
+    actualizarResumen();
+}
+
+function actualizarResumen() {
+    const nums = Object.keys(cuotasSeleccionadas);
+    $('#cuotasIds').val(nums.join(','));
+
+    let totalCuotas = 0, totalMora = 0;
+    nums.forEach(function(n) {
+        const c = cuotasData.find(x => x.numero == n);
+        if (c) {
+            totalCuotas += c.total_cuota;
+            totalMora += c.mora;
+        }
+    });
+
+    const totalGeneral = totalCuotas + totalMora;
+    $('#resumenCuotas').text(nums.length);
+    $('#resumenTotal').text('Bs ' + totalCuotas.toFixed(2));
+    $('#resumenMora').text('Bs ' + totalMora.toFixed(2));
+    $('#totalPagar').text('Bs ' + totalGeneral.toFixed(2));
+    $('#montoTotalInput').val(totalGeneral.toFixed(2));
+}
+</script>
+{% endblock %}

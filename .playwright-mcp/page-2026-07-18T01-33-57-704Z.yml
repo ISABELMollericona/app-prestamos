@@ -1,0 +1,93 @@
+- generic [ref=f20e3]:
+  - text:       
+  - main [ref=f20e4]:
+    - navigation [ref=f20e5]:
+      - generic [ref=f20e6]:
+        - generic [ref=f20e7]:
+          - generic [ref=f20e8]: 
+          - text: 17/07/2026
+        - list [ref=f20e9]:
+          - listitem [ref=f20e10]:
+            - link " Administrador del Sistema administrador" [ref=f20e11] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=f20e12]: 
+              - text: Administrador del Sistema
+              - generic [ref=f20e13]: administrador
+            - text:  
+    - generic [ref=f20e14]:
+      - text: "Pago registrado exitosamente. Código: PAG-20260717-0001"
+      - button [ref=f20e15] [cursor=pointer]
+    - generic [ref=f20e16]:
+      - heading " Pago PAG-20260717-0001" [level=4] [ref=f20e17]:
+        - generic [ref=f20e18]: 
+        - text: Pago PAG-20260717-0001
+      - generic [ref=f20e19]:
+        - link " Voucher PDF" [ref=f20e20] [cursor=pointer]:
+          - /url: /pagos/1/voucher
+          - generic [ref=f20e21]: 
+          - text: Voucher PDF
+        - link " Volver" [ref=f20e22] [cursor=pointer]:
+          - /url: /pagos/
+          - generic [ref=f20e23]: 
+          - text: Volver
+    - generic [ref=f20e24]:
+      - generic [ref=f20e26]:
+        - generic [ref=f20e27]: Detalle del Pago
+        - table [ref=f20e29]:
+          - rowgroup [ref=f20e30]:
+            - row [ref=f20e31]:
+              - rowheader "Código:" [ref=f20e32]
+              - cell "PAG-20260717-0001" [ref=f20e33]
+            - row [ref=f20e34]:
+              - rowheader "Préstamo:" [ref=f20e35]
+              - cell [ref=f20e36]:
+                - link "PRE-0001" [ref=f20e37] [cursor=pointer]:
+                  - /url: /prestamos/1
+            - row [ref=f20e38]:
+              - rowheader "Cliente:" [ref=f20e39]
+              - cell [ref=f20e40]:
+                - link "Maria Elena Quispe Mamani" [ref=f20e41] [cursor=pointer]:
+                  - /url: /clientes/1
+            - row [ref=f20e42]:
+              - rowheader "Monto Total:" [ref=f20e43]
+              - cell [ref=f20e44]:
+                - strong [ref=f20e45]: S/ 201.30
+            - row [ref=f20e46]:
+              - rowheader "Monto Cuotas:" [ref=f20e47]
+              - cell "S/ 201.30" [ref=f20e48]
+            - row [ref=f20e49]:
+              - rowheader "Mora:" [ref=f20e50]
+              - cell "S/ 0.00" [ref=f20e51]
+            - row [ref=f20e52]:
+              - rowheader "Cuotas Pagadas:" [ref=f20e53]
+              - cell "1" [ref=f20e54]
+            - row [ref=f20e55]:
+              - rowheader "Método:" [ref=f20e56]
+              - cell "efectivo" [ref=f20e57]
+            - row [ref=f20e58]:
+              - rowheader "N° Operación:" [ref=f20e59]
+              - cell "OP-TEST-001" [ref=f20e60]
+            - row [ref=f20e61]:
+              - rowheader "Fecha:" [ref=f20e62]
+              - cell "17/07/2026 21:33" [ref=f20e63]
+            - row [ref=f20e64]:
+              - rowheader "Registrado por:" [ref=f20e65]
+              - cell "Administrador del Sistema" [ref=f20e66]
+      - generic [ref=f20e68]:
+        - generic [ref=f20e69]: Cuotas Pagadas
+        - table [ref=f20e71]:
+          - rowgroup [ref=f20e72]:
+            - row [ref=f20e73]:
+              - columnheader "#" [ref=f20e74]
+              - columnheader "Vencimiento" [ref=f20e75]
+              - columnheader "Monto Cuota" [ref=f20e76]
+              - columnheader "Interés" [ref=f20e77]
+              - columnheader "Amortización" [ref=f20e78]
+          - rowgroup [ref=f20e79]:
+            - row [ref=f20e80]:
+              - cell "6" [ref=f20e81]
+              - cell "15/07/2026" [ref=f20e82]
+              - cell "S/ 200.92" [ref=f20e83]
+              - cell "S/ 37.55" [ref=f20e84]
+              - cell "S/ 163.37" [ref=f20e85]
+    - generic [ref=f20e86]: © 2026 MiCredit - Sistema de Gestión de Microcréditos v1.0

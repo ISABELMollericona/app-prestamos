@@ -1,0 +1,115 @@
+- generic [active] [ref=f40e1]:
+  - generic [ref=f40e2]:
+    - link [ref=f40e4] [cursor=pointer]:
+      - /url: /
+      - heading " MiCredit" [level=5] [ref=f40e5]:
+        - generic [ref=f40e6]: 
+        - text: MiCredit
+      - text: Sistema de Microfinanzas
+    - generic [ref=f40e7]: Principal
+    - list [ref=f40e8]:
+      - listitem [ref=f40e9]:
+        - link " Dashboard" [ref=f40e10] [cursor=pointer]:
+          - /url: /
+          - generic [ref=f40e11]: 
+          - text: Dashboard
+    - generic [ref=f40e12]: Gestión
+    - list [ref=f40e13]:
+      - listitem [ref=f40e14]:
+        - link " Clientes" [ref=f40e15] [cursor=pointer]:
+          - /url: /clientes/
+          - generic [ref=f40e16]: 
+          - text: Clientes
+      - listitem [ref=f40e17]:
+        - link " Préstamos" [ref=f40e18] [cursor=pointer]:
+          - /url: /prestamos/
+          - generic [ref=f40e19]: 
+          - text: Préstamos
+      - listitem [ref=f40e20]:
+        - link " Pagos" [ref=f40e21] [cursor=pointer]:
+          - /url: /pagos/
+          - generic [ref=f40e22]: 
+          - text: Pagos
+    - generic [ref=f40e23]: Herramientas
+    - list [ref=f40e24]:
+      - listitem [ref=f40e25]:
+        - link " Reportes" [ref=f40e26] [cursor=pointer]:
+          - /url: /reportes/
+          - generic [ref=f40e27]: 
+          - text: Reportes
+      - listitem [ref=f40e28]:
+        - link " Simulador" [ref=f40e29] [cursor=pointer]:
+          - /url: /prestamos/proyectar
+          - generic [ref=f40e30]: 
+          - text: Simulador
+    - generic [ref=f40e31]: Administración
+    - list [ref=f40e32]:
+      - listitem [ref=f40e33]:
+        - link " Usuarios" [ref=f40e34] [cursor=pointer]:
+          - /url: /usuarios/
+          - generic [ref=f40e35]: 
+          - text: Usuarios
+  - generic [ref=f40e36]:
+    - navigation [ref=f40e37]:
+      - generic [ref=f40e39]:
+        - generic [ref=f40e40]: 
+        - text: 17/07/2026
+      - list [ref=f40e41]:
+        - listitem [ref=f40e42]:
+          - link "AD administrador" [ref=f40e43] [cursor=pointer]:
+            - /url: "#"
+            - generic [ref=f40e44]: AD
+            - generic [ref=f40e45]: administrador
+          - text:  
+    - generic [ref=f40e46]:
+      - generic [ref=f40e47]: 
+      - text: Usuario "cajero1" creado exitosamente.
+      - button [ref=f40e48] [cursor=pointer]
+    - generic [ref=f40e49]:
+      - heading " Usuarios del Sistema" [level=4] [ref=f40e50]:
+        - generic [ref=f40e51]: 
+        - text: Usuarios del Sistema
+      - link " Nuevo Usuario" [ref=f40e52] [cursor=pointer]:
+        - /url: /usuarios/nuevo
+        - generic [ref=f40e53]: 
+        - text: Nuevo Usuario
+    - generic [ref=f40e55]:
+      - generic [ref=f40e57]:
+        - textbox "Buscar por nombre, usuario o email..." [ref=f40e58]
+        - button "" [ref=f40e59] [cursor=pointer]
+      - table [ref=f40e62]:
+        - rowgroup [ref=f40e63]:
+          - row [ref=f40e64]:
+            - columnheader "Usuario" [ref=f40e65]
+            - columnheader "Nombre Completo" [ref=f40e66]
+            - columnheader "Email" [ref=f40e67]
+            - columnheader "Rol" [ref=f40e68]
+            - columnheader "Estado" [ref=f40e69]
+            - columnheader "Último Acceso" [ref=f40e70]
+            - columnheader "Acciones" [ref=f40e71]
+        - rowgroup [ref=f40e72]:
+          - row [ref=f40e73]:
+            - cell [ref=f40e74]:
+              - strong [ref=f40e75]: "@admin"
+            - cell "Administrador del Sistema" [ref=f40e76]
+            - cell "admin@micredit.com" [ref=f40e77]
+            - cell "administrador" [ref=f40e78]
+            - cell "Activo" [ref=f40e80]
+            - cell "Nunca" [ref=f40e82]
+            - cell [ref=f40e83]:
+              - link "" [ref=f40e84] [cursor=pointer]:
+                - /url: /usuarios/1/editar
+              - button "" [ref=f40e87] [cursor=pointer]
+          - row [ref=f40e89]:
+            - cell [ref=f40e90]:
+              - strong [ref=f40e91]: "@cajero1"
+            - cell "Cajero Test Uno" [ref=f40e92]
+            - cell "cajero1@micredit.com" [ref=f40e93]
+            - cell "cajero" [ref=f40e94]
+            - cell "Activo" [ref=f40e96]
+            - cell "Nunca" [ref=f40e98]
+            - cell [ref=f40e99]:
+              - link "" [ref=f40e100] [cursor=pointer]:
+                - /url: /usuarios/2/editar
+              - button "" [ref=f40e103] [cursor=pointer]
+    - contentinfo [ref=f40e105]: © 2026 MiCredit — Sistema de Gestión de Microcréditos v1.0

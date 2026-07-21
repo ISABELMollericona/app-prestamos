@@ -1,0 +1,111 @@
+- generic [ref=f6e3]:
+  - text:       
+  - main [ref=f6e4]:
+    - navigation [ref=f6e5]:
+      - generic [ref=f6e6]:
+        - generic [ref=f6e7]:
+          - generic [ref=f6e8]: 
+          - text: 17/07/2026
+        - list [ref=f6e9]:
+          - listitem [ref=f6e10]:
+            - link " Administrador del Sistema administrador" [ref=f6e11] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=f6e12]: 
+              - text: Administrador del Sistema
+              - generic [ref=f6e13]: administrador
+            - text:  
+    - generic [ref=f6e14]:
+      - text: Solicitud de préstamo registrada exitosamente.
+      - button [ref=f6e15] [cursor=pointer]
+    - generic [ref=f6e16]:
+      - heading " PRE-0005" [level=4] [ref=f6e17]:
+        - generic [ref=f6e18]: 
+        - text: PRE-0005
+      - generic [ref=f6e19]:
+        - link " Cronograma PDF" [ref=f6e20] [cursor=pointer]:
+          - /url: /prestamos/5/cronograma
+          - generic [ref=f6e21]: 
+          - text: Cronograma PDF
+        - link " Volver" [ref=f6e22] [cursor=pointer]:
+          - /url: /prestamos/
+          - generic [ref=f6e23]: 
+          - text: Volver
+    - generic [ref=f6e24]:
+      - generic [ref=f6e26]:
+        - generic [ref=f6e27]:
+          - generic [ref=f6e28]: 
+          - text: Información del Préstamo
+        - generic [ref=f6e30]:
+          - table [ref=f6e32]:
+            - rowgroup [ref=f6e33]:
+              - row [ref=f6e34]:
+                - rowheader "Cliente:" [ref=f6e35]
+                - cell [ref=f6e36]:
+                  - link "Roberto Carlos Test" [ref=f6e37] [cursor=pointer]:
+                    - /url: /clientes/4
+              - row [ref=f6e38]:
+                - rowheader "Documento:" [ref=f6e39]
+                - cell "DNI 55566677" [ref=f6e40]
+              - row [ref=f6e41]:
+                - rowheader "Monto Solicitado:" [ref=f6e42]
+                - cell "S/ 2,500.00" [ref=f6e43]
+              - row [ref=f6e44]:
+                - rowheader "Monto Aprobado:" [ref=f6e45]
+                - cell "S/ -" [ref=f6e46]
+              - row [ref=f6e47]:
+                - rowheader "Saldo Pendiente:" [ref=f6e48]
+                - cell [ref=f6e49]:
+                  - strong [ref=f6e50]: S/ 0.00
+          - table [ref=f6e52]:
+            - rowgroup [ref=f6e53]:
+              - row [ref=f6e54]:
+                - rowheader "Plazo:" [ref=f6e55]
+                - cell "6 meses" [ref=f6e56]
+              - row [ref=f6e57]:
+                - rowheader "Tasa:" [ref=f6e58]
+                - cell "3.00% mensual" [ref=f6e59]
+              - row [ref=f6e60]:
+                - rowheader "Método:" [ref=f6e61]
+                - cell "Frances" [ref=f6e62]
+              - row [ref=f6e63]:
+                - rowheader "Cuota:" [ref=f6e64]
+                - cell "S/ 0.00" [ref=f6e65]
+              - row [ref=f6e66]:
+                - rowheader "Estado:" [ref=f6e67]
+                - cell "pendiente" [ref=f6e68]
+              - row [ref=f6e70]:
+                - rowheader "Solicitud:" [ref=f6e71]
+                - cell "18/07/2026" [ref=f6e72]
+      - generic [ref=f6e73]:
+        - generic [ref=f6e74]:
+          - generic [ref=f6e75]:
+            - generic [ref=f6e76]: 
+            - text: Progreso
+          - generic [ref=f6e77]:
+            - generic [ref=f6e78]:
+              - progressbar: 0%
+            - paragraph [ref=f6e79]: 0 pagadas / 0 pendientes
+        - generic [ref=f6e80]:
+          - generic [ref=f6e81]:
+            - generic [ref=f6e82]: 
+            - text: Acción Requerida
+          - link " Evaluar Solicitud" [ref=f6e84] [cursor=pointer]:
+            - /url: /prestamos/5/evaluar
+            - generic [ref=f6e85]: 
+            - text: Evaluar Solicitud
+    - generic [ref=f6e86]:
+      - generic [ref=f6e87]:
+        - generic [ref=f6e88]: 
+        - text: Historial de Estados
+      - table [ref=f6e91]:
+        - rowgroup [ref=f6e92]:
+          - row [ref=f6e93]:
+            - columnheader "Fecha" [ref=f6e94]
+            - columnheader "Estado Anterior" [ref=f6e95]
+            - columnheader "Estado Nuevo" [ref=f6e96]
+            - columnheader "Usuario" [ref=f6e97]
+            - columnheader "Observaciones" [ref=f6e98]
+        - rowgroup [ref=f6e99]:
+          - row [ref=f6e100]:
+            - cell "Sin historial" [ref=f6e101]
+    - generic [ref=f6e102]: © 2026 MiCredit - Sistema de Gestión de Microcréditos v1.0

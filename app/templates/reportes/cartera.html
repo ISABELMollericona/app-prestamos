@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Cartera - MiCredit{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h4 class="mb-0"><i class="bi bi-cash"></i> Reporte de Cartera</h4>
+    <a href="{{ url_for('reportes.index') }}" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Volver</a>
+</div>
+
+<div class="row g-3 mb-4">
+    <div class="col-md-3">
+        <div class="card text-center border-primary">
+            <div class="card-body">
+                <h5 class="text-primary">{{ total_prestamos }}</h5>
+                <small class="text-muted">Préstamos Activos</small>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-center border-success">
+            <div class="card-body">
+                <h5 class="text-success">Bs {{ "{:,.2f}".format(total_desembolsado) }}</h5>
+                <small class="text-muted">Total Desembolsado</small>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-center border-info">
+            <div class="card-body">
+                <h5 class="text-info">Bs {{ "{:,.2f}".format(saldo_pendiente) }}</h5>
+                <small class="text-muted">Saldo Pendiente</small>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-center border-danger">
+            <div class="card-body">
+                <h5 class="text-danger">{{ prestamos_mora }}</h5>
+                <small class="text-muted">En Mora</small>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

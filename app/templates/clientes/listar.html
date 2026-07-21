@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}Clientes - MiCredit{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h4 class="mb-0"><i class="bi bi-people"></i> Clientes</h4>
+    {% if current_user.has_any_role('administrador', 'gerente', 'asesor') %}
+    <a href="{{ url_for('clientes.nuevo') }}" class="btn btn-primary"><i class="bi bi-plus-lg"></i> Nuevo Cliente</a>
+    {% endif %}
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <form class="row g-2 mb-3" method="GET">
+            <div class="col-md-6">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="q" placeholder="Buscar por nombre, documento o celular..." value="{{ busqueda }}">
+                    <button class="btn btn-outline-primary" type="submit"><i class="bi bi-search"></i></button>
+                </div>
+            </div>
+        </form>
+
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Nombre</th>
+                        <th>Documento</th>
+                        <th>Celular</th>
+                        <th>Préstamos</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for c in clientes %}
+                    <tr>
+                        <td>{{ c.codigo_cliente }}</td>
+                        <td><a href="{{ url_for('clientes.detalle', id=c.id) }}">{{ c.nombre_completo }}</a></td>
+                        <td>{{ c.tipo_documento }}: {{ c.numero_documento }}</td>
+                        <td>{{ c.celular or '-' }}</td>
+                        <td><span class="badge bg-info">{{ c.prestamos|length }}</span></td>
+                        <td>
+                            <a href="{{ url_for('clientes.detalle', id=c.id) }}" class="btn btn-sm btn-outline-info"><i class="bi bi-eye"></i></a>
+                            {% if current_user.has_any_role('administrador', 'gerente', 'asesor') %}
+                            <a href="{{ url_for('clientes.editar', id=c.id) }}" class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil"></i></a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr><td colspan="6" class="text-center text-muted py-4">No se encontraron clientes</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

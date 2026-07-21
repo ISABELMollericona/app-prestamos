@@ -1,0 +1,58 @@
+- generic [ref=f28e3]:
+  - text:       
+  - main [ref=f28e4]:
+    - navigation [ref=f28e5]:
+      - generic [ref=f28e6]:
+        - generic [ref=f28e7]:
+          - generic [ref=f28e8]: 
+          - text: 17/07/2026
+        - list [ref=f28e9]:
+          - listitem [ref=f28e10]:
+            - link " Administrador del Sistema administrador" [ref=f28e11] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=f28e12]: 
+              - text: Administrador del Sistema
+              - generic [ref=f28e13]: administrador
+            - text:  
+    - heading " Mi Perfil" [level=4] [ref=f28e15]:
+      - generic [ref=f28e16]: 
+      - text: Mi Perfil
+    - generic [ref=f28e17]:
+      - generic [ref=f28e20]:
+        - generic [ref=f28e21]: 
+        - heading "Administrador del Sistema" [level=5] [ref=f28e22]
+        - generic [ref=f28e23]: administrador
+        - separator [ref=f28e24]
+        - paragraph [ref=f28e25]:
+          - strong [ref=f28e26]: "Usuario:"
+          - text: admin
+        - paragraph [ref=f28e27]:
+          - strong [ref=f28e28]: "Email:"
+          - text: admin@micredit.com
+        - paragraph [ref=f28e29]:
+          - strong [ref=f28e30]: "Miembro desde:"
+          - text: 18/07/2026
+      - generic [ref=f28e32]:
+        - generic [ref=f28e33]: Editar Perfil
+        - generic [ref=f28e35]:
+          - generic [ref=f28e36]:
+            - generic [ref=f28e37]: Nombre Completo
+            - textbox [ref=f28e38]: Administrador del Sistema
+          - generic [ref=f28e39]:
+            - generic [ref=f28e40]: Email
+            - textbox [ref=f28e41]: admin@micredit.com
+          - separator [ref=f28e42]
+          - heading "Cambiar Contraseña" [level=6] [ref=f28e43]
+          - generic [ref=f28e44]:
+            - generic [ref=f28e45]: Contraseña Actual
+            - textbox [ref=f28e46]
+          - generic [ref=f28e47]:
+            - generic [ref=f28e48]: Nueva Contraseña
+            - textbox [ref=f28e49]
+          - generic [ref=f28e50]:
+            - generic [ref=f28e51]: Confirmar Nueva Contraseña
+            - textbox [ref=f28e52]
+          - button " Guardar Cambios" [ref=f28e53] [cursor=pointer]:
+            - generic [ref=f28e54]: 
+            - text: Guardar Cambios
+    - generic [ref=f28e55]: © 2026 MiCredit - Sistema de Gestión de Microcréditos v1.0

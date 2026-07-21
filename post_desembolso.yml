@@ -1,0 +1,214 @@
+- generic [ref=f9e3]:
+  - text:       
+  - main [ref=f9e4]:
+    - navigation [ref=f9e5]:
+      - generic [ref=f9e6]:
+        - generic [ref=f9e7]:
+          - generic [ref=f9e8]: 
+          - text: 17/07/2026
+        - list [ref=f9e9]:
+          - listitem [ref=f9e10]:
+            - link " Administrador del Sistema administrador" [ref=f9e11] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=f9e12]: 
+              - text: Administrador del Sistema
+              - generic [ref=f9e13]: administrador
+            - text:  
+    - generic [ref=f9e14]:
+      - text: Préstamo desembolsado exitosamente. 6 cuotas generadas.
+      - button [ref=f9e15] [cursor=pointer]
+    - generic [ref=f9e16]:
+      - heading " PRE-0005" [level=4] [ref=f9e17]:
+        - generic [ref=f9e18]: 
+        - text: PRE-0005
+      - generic [ref=f9e19]:
+        - link " Cronograma PDF" [ref=f9e20] [cursor=pointer]:
+          - /url: /prestamos/5/cronograma
+          - generic [ref=f9e21]: 
+          - text: Cronograma PDF
+        - link " Volver" [ref=f9e22] [cursor=pointer]:
+          - /url: /prestamos/
+          - generic [ref=f9e23]: 
+          - text: Volver
+    - generic [ref=f9e24]:
+      - generic [ref=f9e26]:
+        - generic [ref=f9e27]:
+          - generic [ref=f9e28]: 
+          - text: Información del Préstamo
+        - generic [ref=f9e30]:
+          - table [ref=f9e32]:
+            - rowgroup [ref=f9e33]:
+              - row [ref=f9e34]:
+                - rowheader "Cliente:" [ref=f9e35]
+                - cell [ref=f9e36]:
+                  - link "Roberto Carlos Test" [ref=f9e37] [cursor=pointer]:
+                    - /url: /clientes/4
+              - row [ref=f9e38]:
+                - rowheader "Documento:" [ref=f9e39]
+                - cell "DNI 55566677" [ref=f9e40]
+              - row [ref=f9e41]:
+                - rowheader "Monto Solicitado:" [ref=f9e42]
+                - cell "S/ 2,500.00" [ref=f9e43]
+              - row [ref=f9e44]:
+                - rowheader "Monto Aprobado:" [ref=f9e45]
+                - cell "S/ 2,500.00" [ref=f9e46]
+              - row [ref=f9e47]:
+                - rowheader "Saldo Pendiente:" [ref=f9e48]
+                - cell [ref=f9e49]:
+                  - strong [ref=f9e50]: S/ 2,500.00
+          - table [ref=f9e52]:
+            - rowgroup [ref=f9e53]:
+              - row [ref=f9e54]:
+                - rowheader "Plazo:" [ref=f9e55]
+                - cell "6 meses" [ref=f9e56]
+              - row [ref=f9e57]:
+                - rowheader "Tasa:" [ref=f9e58]
+                - cell "3.00% mensual" [ref=f9e59]
+              - row [ref=f9e60]:
+                - rowheader "Método:" [ref=f9e61]
+                - cell "Frances" [ref=f9e62]
+              - row [ref=f9e63]:
+                - rowheader "Cuota:" [ref=f9e64]
+                - cell "S/ 461.49" [ref=f9e65]
+              - row [ref=f9e66]:
+                - rowheader "Estado:" [ref=f9e67]
+                - cell "activo" [ref=f9e68]
+              - row [ref=f9e70]:
+                - rowheader "Solicitud:" [ref=f9e71]
+                - cell "18/07/2026" [ref=f9e72]
+              - row [ref=f9e73]:
+                - rowheader "Desembolso:" [ref=f9e74]
+                - cell "17/07/2026" [ref=f9e75]
+      - generic [ref=f9e77]:
+        - generic [ref=f9e78]:
+          - generic [ref=f9e79]: 
+          - text: Progreso
+        - generic [ref=f9e80]:
+          - generic [ref=f9e81]:
+            - progressbar: 0.0%
+          - paragraph [ref=f9e82]: 0 pagadas / 6 pendientes
+    - generic [ref=f9e83]:
+      - generic [ref=f9e84]:
+        - generic [ref=f9e85]:
+          - generic [ref=f9e86]: 
+          - text: Tabla de Amortización
+        - generic [ref=f9e87]: "Total Interés: S/ 268.96 | Total a Pagar: S/ 2,771.63"
+      - table [ref=f9e90]:
+        - rowgroup [ref=f9e91]:
+          - row [ref=f9e92]:
+            - columnheader "#" [ref=f9e93]
+            - columnheader "Vencimiento" [ref=f9e94]
+            - columnheader "Saldo Inicial" [ref=f9e95]
+            - columnheader "Cuota" [ref=f9e96]
+            - columnheader "Interés" [ref=f9e97]
+            - columnheader "Amortización" [ref=f9e98]
+            - columnheader "Seguro" [ref=f9e99]
+            - columnheader "Total" [ref=f9e100]
+            - columnheader "Saldo Final" [ref=f9e101]
+            - columnheader "Mora" [ref=f9e102]
+            - columnheader "Estado" [ref=f9e103]
+        - rowgroup [ref=f9e104]:
+          - row [ref=f9e105]:
+            - cell "1" [ref=f9e106]
+            - cell "17/08/2026" [ref=f9e107]
+            - cell "S/ 2,500.00" [ref=f9e108]
+            - cell "S/ 461.49" [ref=f9e109]
+            - cell "S/ 75.00" [ref=f9e110]
+            - cell "S/ 386.49" [ref=f9e111]
+            - cell "S/ 0.75" [ref=f9e112]
+            - cell [ref=f9e113]:
+              - strong [ref=f9e114]: S/ 462.24
+            - cell "S/ 2,113.51" [ref=f9e115]
+            - cell "-" [ref=f9e116]
+            - cell "pendiente" [ref=f9e117]
+          - row [ref=f9e119]:
+            - cell "2" [ref=f9e120]
+            - cell "17/09/2026" [ref=f9e121]
+            - cell "S/ 2,113.51" [ref=f9e122]
+            - cell "S/ 461.49" [ref=f9e123]
+            - cell "S/ 63.41" [ref=f9e124]
+            - cell "S/ 398.08" [ref=f9e125]
+            - cell "S/ 0.63" [ref=f9e126]
+            - cell [ref=f9e127]:
+              - strong [ref=f9e128]: S/ 462.12
+            - cell "S/ 1,715.43" [ref=f9e129]
+            - cell "-" [ref=f9e130]
+            - cell "pendiente" [ref=f9e131]
+          - row [ref=f9e133]:
+            - cell "3" [ref=f9e134]
+            - cell "17/10/2026" [ref=f9e135]
+            - cell "S/ 1,715.43" [ref=f9e136]
+            - cell "S/ 461.49" [ref=f9e137]
+            - cell "S/ 51.46" [ref=f9e138]
+            - cell "S/ 410.03" [ref=f9e139]
+            - cell "S/ 0.51" [ref=f9e140]
+            - cell [ref=f9e141]:
+              - strong [ref=f9e142]: S/ 462.00
+            - cell "S/ 1,305.40" [ref=f9e143]
+            - cell "-" [ref=f9e144]
+            - cell "pendiente" [ref=f9e145]
+          - row [ref=f9e147]:
+            - cell "4" [ref=f9e148]
+            - cell "17/11/2026" [ref=f9e149]
+            - cell "S/ 1,305.40" [ref=f9e150]
+            - cell "S/ 461.49" [ref=f9e151]
+            - cell "S/ 39.16" [ref=f9e152]
+            - cell "S/ 422.33" [ref=f9e153]
+            - cell "S/ 0.39" [ref=f9e154]
+            - cell [ref=f9e155]:
+              - strong [ref=f9e156]: S/ 461.88
+            - cell "S/ 883.07" [ref=f9e157]
+            - cell "-" [ref=f9e158]
+            - cell "pendiente" [ref=f9e159]
+          - row [ref=f9e161]:
+            - cell "5" [ref=f9e162]
+            - cell "17/12/2026" [ref=f9e163]
+            - cell "S/ 883.07" [ref=f9e164]
+            - cell "S/ 461.49" [ref=f9e165]
+            - cell "S/ 26.49" [ref=f9e166]
+            - cell "S/ 435.00" [ref=f9e167]
+            - cell "S/ 0.26" [ref=f9e168]
+            - cell [ref=f9e169]:
+              - strong [ref=f9e170]: S/ 461.75
+            - cell "S/ 448.07" [ref=f9e171]
+            - cell "-" [ref=f9e172]
+            - cell "pendiente" [ref=f9e173]
+          - row [ref=f9e175]:
+            - cell "6" [ref=f9e176]
+            - cell "17/01/2027" [ref=f9e177]
+            - cell "S/ 448.07" [ref=f9e178]
+            - cell "S/ 461.51" [ref=f9e179]
+            - cell "S/ 13.44" [ref=f9e180]
+            - cell "S/ 448.07" [ref=f9e181]
+            - cell "S/ 0.13" [ref=f9e182]
+            - cell [ref=f9e183]:
+              - strong [ref=f9e184]: S/ 461.64
+            - cell "S/ 0.00" [ref=f9e185]
+            - cell "-" [ref=f9e186]
+            - cell "pendiente" [ref=f9e187]
+    - generic [ref=f9e189]:
+      - generic [ref=f9e190]:
+        - generic [ref=f9e191]: 
+        - text: Historial de Estados
+      - table [ref=f9e194]:
+        - rowgroup [ref=f9e195]:
+          - row [ref=f9e196]:
+            - columnheader "Fecha" [ref=f9e197]
+            - columnheader "Estado Anterior" [ref=f9e198]
+            - columnheader "Estado Nuevo" [ref=f9e199]
+            - columnheader "Usuario" [ref=f9e200]
+            - columnheader "Observaciones" [ref=f9e201]
+        - rowgroup [ref=f9e202]:
+          - row [ref=f9e203]:
+            - cell "18/07/2026 01:30" [ref=f9e204]
+            - cell "aprobado" [ref=f9e205]
+            - cell "activo" [ref=f9e206]
+            - cell "Administrador del Sistema" [ref=f9e208]
+            - cell "Préstamo desembolsado y activado" [ref=f9e209]
+          - row [ref=f9e210]:
+            - cell "18/07/2026 01:29" [ref=f9e211]
+            - cell "pendiente" [ref=f9e212]
+            - cell "aprobado" [ref=f9e213]
+            - cell "Administrador del Sistema" [ref=f9e215]
+            - cell "Préstamo aprobado" [ref=f9e216]
+    - generic [ref=f9e217]: © 2026 MiCredit - Sistema de Gestión de Microcréditos v1.0

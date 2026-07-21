@@ -1,0 +1,24 @@
+- generic [ref=f67e4]:
+  - generic [ref=f67e5]:
+    - generic [ref=f67e6]: 
+    - heading "MiCredit" [level=4] [ref=f67e8]
+    - paragraph [ref=f67e9]: Sistema de Gestión de Microcréditos
+  - generic [ref=f67e12]:
+    - generic [ref=f67e13]:
+      - generic [ref=f67e14]: Usuario
+      - generic [ref=f67e16]:
+        - generic [ref=f67e17]: 
+        - textbox "Usuario" [ref=f67e19]:
+          - /placeholder: Ingrese su usuario
+          - text: admin
+    - generic [ref=f67e20]:
+      - generic [ref=f67e21]: Contraseña
+      - generic [ref=f67e23]:
+        - generic [ref=f67e24]: 
+        - textbox "Contraseña" [ref=f67e26]:
+          - /placeholder: Ingrese su contraseña
+          - text: admin123
+    - button " Iniciar Sesión" [ref=f67e27] [cursor=pointer]:
+      - generic [ref=f67e28]: 
+      - text: Iniciar Sesión
+  - paragraph [ref=f67e29]: © 2026 MiCredit — Microfinanzas

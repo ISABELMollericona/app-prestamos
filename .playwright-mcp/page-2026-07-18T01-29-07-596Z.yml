@@ -1,0 +1,108 @@
+- generic [ref=f3e3]:
+  - text:       
+  - main [ref=f3e4]:
+    - navigation [ref=f3e5]:
+      - generic [ref=f3e6]:
+        - generic [ref=f3e7]:
+          - generic [ref=f3e8]: 
+          - text: 17/07/2026
+        - list [ref=f3e9]:
+          - listitem [ref=f3e10]:
+            - link " Administrador del Sistema administrador" [ref=f3e11] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=f3e12]: 
+              - text: Administrador del Sistema
+              - generic [ref=f3e13]: administrador
+            - text:  
+    - generic [ref=f3e14]:
+      - heading " Nuevo Cliente" [level=4] [ref=f3e15]:
+        - generic [ref=f3e16]: 
+        - text: Nuevo Cliente
+      - link " Volver" [ref=f3e17] [cursor=pointer]:
+        - /url: /clientes/
+        - generic [ref=f3e18]: 
+        - text: Volver
+    - generic [ref=f3e21]:
+      - generic [ref=f3e22]:
+        - generic [ref=f3e23]:
+          - generic [ref=f3e24]: Nombre Completo
+          - textbox "Nombre Completo" [ref=f3e25]
+        - generic [ref=f3e26]:
+          - generic [ref=f3e27]: Tipo Documento
+          - combobox "Tipo Documento" [ref=f3e28]:
+            - option "DNI" [selected]
+            - option "Carné de Extranjería"
+            - option "RUC"
+        - generic [ref=f3e29]:
+          - generic [ref=f3e30]: N° Documento
+          - textbox "N° Documento" [ref=f3e31]
+        - generic [ref=f3e32]:
+          - generic [ref=f3e33]: Fecha de Nacimiento
+          - textbox "Fecha de Nacimiento" [ref=f3e34]
+        - generic [ref=f3e35]:
+          - generic [ref=f3e36]: Género
+          - combobox "Género" [ref=f3e37]:
+            - option "Seleccione..." [selected]
+            - option "Masculino"
+            - option "Femenino"
+        - generic [ref=f3e38]:
+          - generic [ref=f3e39]: Estado Civil
+          - combobox "Estado Civil" [ref=f3e40]:
+            - option "Seleccione..." [selected]
+            - option "Soltero"
+            - option "Casado"
+            - option "Divorciado"
+            - option "Viudo"
+        - generic [ref=f3e41]:
+          - generic [ref=f3e42]: Ocupación
+          - textbox "Ocupación" [ref=f3e43]
+        - generic [ref=f3e44]:
+          - generic [ref=f3e45]: Ingresos Mensuales (S/)
+          - spinbutton "Ingresos Mensuales (S/)" [ref=f3e46]
+      - separator [ref=f3e47]
+      - heading "Contacto" [level=6] [ref=f3e48]
+      - generic [ref=f3e49]:
+        - generic [ref=f3e50]:
+          - generic [ref=f3e51]: Teléfono
+          - textbox "Teléfono" [ref=f3e52]
+        - generic [ref=f3e53]:
+          - generic [ref=f3e54]: Celular
+          - textbox "Celular" [ref=f3e55]
+        - generic [ref=f3e56]:
+          - generic [ref=f3e57]: Email
+          - textbox "Email" [ref=f3e58]
+      - separator [ref=f3e59]
+      - heading "Dirección" [level=6] [ref=f3e60]
+      - generic [ref=f3e62]:
+        - generic [ref=f3e63]: Dirección
+        - textbox "Dirección" [ref=f3e64]
+      - generic [ref=f3e65]:
+        - generic [ref=f3e66]:
+          - generic [ref=f3e67]: Distrito
+          - textbox "Distrito" [ref=f3e68]
+        - generic [ref=f3e69]:
+          - generic [ref=f3e70]: Provincia
+          - textbox "Provincia" [ref=f3e71]
+        - generic [ref=f3e72]:
+          - generic [ref=f3e73]: Departamento
+          - textbox "Departamento" [ref=f3e74]
+      - separator [ref=f3e75]
+      - heading "Referencia" [level=6] [ref=f3e76]
+      - generic [ref=f3e77]:
+        - generic [ref=f3e78]:
+          - generic [ref=f3e79]: Nombre Referencia
+          - textbox "Nombre Referencia" [ref=f3e80]
+        - generic [ref=f3e81]:
+          - generic [ref=f3e82]: Teléfono Referencia
+          - textbox "Teléfono Referencia" [ref=f3e83]
+      - separator [ref=f3e84]
+      - generic [ref=f3e86]:
+        - generic [ref=f3e87]: Observaciones
+        - textbox "Observaciones" [ref=f3e88]
+      - generic [ref=f3e89]:
+        - button " Guardar" [ref=f3e90] [cursor=pointer]:
+          - generic [ref=f3e91]: 
+          - text: Guardar
+        - link "Cancelar" [ref=f3e92] [cursor=pointer]:
+          - /url: /clientes/
+    - generic [ref=f3e93]: © 2026 MiCredit - Sistema de Gestión de Microcréditos v1.0

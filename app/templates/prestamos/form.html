@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}{{ titulo }} - MiCredit{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h4 class="mb-0"><i class="bi bi-file-text"></i> {{ titulo }}</h4>
+    <a href="{{ url_for('prestamos.listar') }}" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Volver</a>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            <div class="row g-3">
+                <div class="col-md-6">
+                    {{ form.cliente_id.label(class="form-label") }}
+                    {{ form.cliente_id(class="form-select" + (" is-invalid" if form.cliente_id.errors else "")) }}
+                    {% for e in form.cliente_id.errors %}<div class="invalid-feedback">{{ e }}</div>{% endfor %}
+                </div>
+                <div class="col-md-3">
+                    {{ form.monto_solicitado.label(class="form-label") }}
+                    {{ form.monto_solicitado(class="form-control" + (" is-invalid" if form.monto_solicitado.errors else ""), placeholder="0.00") }}
+                    {% for e in form.monto_solicitado.errors %}<div class="invalid-feedback">{{ e }}</div>{% endfor %}
+                </div>
+                <div class="col-md-3">
+                    {{ form.plazo_meses.label(class="form-label") }}
+                    {{ form.plazo_meses(class="form-control" + (" is-invalid" if form.plazo_meses.errors else "")) }}
+                    {% for e in form.plazo_meses.errors %}<div class="invalid-feedback">{{ e }}</div>{% endfor %}
+                </div>
+                <div class="col-md-4">
+                    {{ form.tasa_interes_id.label(class="form-label") }}
+                    {{ form.tasa_interes_id(class="form-select" + (" is-invalid" if form.tasa_interes_id.errors else "")) }}
+                    {% for e in form.tasa_interes_id.errors %}<div class="invalid-feedback">{{ e }}</div>{% endfor %}
+                </div>
+                <div class="col-md-4">
+                    {{ form.metodo_amortizacion.label(class="form-label") }}
+                    {{ form.metodo_amortizacion(class="form-select") }}
+                </div>
+                <div class="col-md-4">
+                    {{ form.frecuencia_pago.label(class="form-label") }}
+                    {{ form.frecuencia_pago(class="form-select") }}
+                </div>
+                <div class="col-12">
+                    {{ form.observaciones.label(class="form-label") }}
+                    {{ form.observaciones(class="form-control", rows=3) }}
+                </div>
+            </div>
+
+            <div class="mt-4">
+                <button type="submit" class="btn btn-primary"><i class="bi bi-save"></i> {{ form.submit.label.text }}</button>
+                <a href="{{ url_for('prestamos.listar') }}" class="btn btn-outline-secondary">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

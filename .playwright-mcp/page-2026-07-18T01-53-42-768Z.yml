@@ -1,0 +1,159 @@
+- generic [active] [ref=f45e1]:
+  - generic [ref=f45e2]:
+    - link [ref=f45e4] [cursor=pointer]:
+      - /url: /
+      - heading " MiCredit" [level=5] [ref=f45e5]:
+        - generic [ref=f45e6]: 
+        - text: MiCredit
+      - text: Sistema de Microfinanzas
+    - generic [ref=f45e7]: Principal
+    - list [ref=f45e8]:
+      - listitem [ref=f45e9]:
+        - link " Dashboard" [ref=f45e10] [cursor=pointer]:
+          - /url: /
+          - generic [ref=f45e11]: 
+          - text: Dashboard
+    - generic [ref=f45e12]: Gestión
+    - list [ref=f45e13]:
+      - listitem [ref=f45e14]:
+        - link " Clientes" [ref=f45e15] [cursor=pointer]:
+          - /url: /clientes/
+          - generic [ref=f45e16]: 
+          - text: Clientes
+      - listitem [ref=f45e17]:
+        - link " Préstamos" [ref=f45e18] [cursor=pointer]:
+          - /url: /prestamos/
+          - generic [ref=f45e19]: 
+          - text: Préstamos
+      - listitem [ref=f45e20]:
+        - link " Pagos" [ref=f45e21] [cursor=pointer]:
+          - /url: /pagos/
+          - generic [ref=f45e22]: 
+          - text: Pagos
+    - generic [ref=f45e23]: Herramientas
+    - list [ref=f45e24]:
+      - listitem [ref=f45e25]:
+        - link " Reportes" [ref=f45e26] [cursor=pointer]:
+          - /url: /reportes/
+          - generic [ref=f45e27]: 
+          - text: Reportes
+      - listitem [ref=f45e28]:
+        - link " Simulador" [ref=f45e29] [cursor=pointer]:
+          - /url: /prestamos/proyectar
+          - generic [ref=f45e30]: 
+          - text: Simulador
+    - generic [ref=f45e31]: Administración
+    - list [ref=f45e32]:
+      - listitem [ref=f45e33]:
+        - link " Usuarios" [ref=f45e34] [cursor=pointer]:
+          - /url: /usuarios/
+          - generic [ref=f45e35]: 
+          - text: Usuarios
+  - generic [ref=f45e36]:
+    - navigation [ref=f45e37]:
+      - generic [ref=f45e39]:
+        - generic [ref=f45e40]: 
+        - text: 17/07/2026
+      - list [ref=f45e41]:
+        - listitem [ref=f45e42]:
+          - link "AD administrador" [ref=f45e43] [cursor=pointer]:
+            - /url: "#"
+            - generic [ref=f45e44]: AD
+            - generic [ref=f45e45]: administrador
+          - text:  
+    - generic [ref=f45e46]:
+      - heading " Dashboard" [level=4] [ref=f45e47]:
+        - generic [ref=f45e48]: 
+        - text: Dashboard
+      - generic [ref=f45e49]:
+        - link " Nuevo Préstamo" [ref=f45e50] [cursor=pointer]:
+          - /url: /prestamos/nuevo
+          - generic [ref=f45e51]: 
+          - text: Nuevo Préstamo
+        - link " Registrar Pago" [ref=f45e52] [cursor=pointer]:
+          - /url: /pagos/nuevo
+          - generic [ref=f45e53]: 
+          - text: Registrar Pago
+    - generic [ref=f45e54]:
+      - generic [ref=f45e58]:
+        - generic [ref=f45e59]:
+          - paragraph [ref=f45e60]: Préstamos Activos
+          - heading "4" [level=3] [ref=f45e61]
+        - generic [ref=f45e62]: 
+      - generic [ref=f45e67]:
+        - generic [ref=f45e68]:
+          - paragraph [ref=f45e69]: Clientes Registrados
+          - heading "3" [level=3] [ref=f45e70]
+        - generic [ref=f45e71]: 
+      - generic [ref=f45e76]:
+        - generic [ref=f45e77]:
+          - paragraph [ref=f45e78]: Cartera Total
+          - heading "Bs 11,500.00" [level=3] [ref=f45e79]
+        - generic [ref=f45e80]: 
+      - generic [ref=f45e85]:
+        - generic [ref=f45e86]:
+          - paragraph [ref=f45e87]: Cobranza Hoy
+          - heading "Bs 0.00" [level=3] [ref=f45e88]
+        - generic [ref=f45e89]: 
+    - generic [ref=f45e91]:
+      - generic [ref=f45e93]:
+        - generic [ref=f45e94]:
+          - generic [ref=f45e95]:
+            - generic [ref=f45e96]: 
+            - text: Préstamos Recientes
+          - link "Ver Todos" [ref=f45e97] [cursor=pointer]:
+            - /url: /prestamos/
+        - table [ref=f45e100]:
+          - rowgroup [ref=f45e101]:
+            - row [ref=f45e102]:
+              - columnheader "Código" [ref=f45e103]
+              - columnheader "Cliente" [ref=f45e104]
+              - columnheader "Monto" [ref=f45e105]
+              - columnheader "Estado" [ref=f45e106]
+          - rowgroup [ref=f45e107]:
+            - row [ref=f45e108]:
+              - cell [ref=f45e109]:
+                - link "PRE-0002" [ref=f45e110] [cursor=pointer]:
+                  - /url: /prestamos/2
+              - cell "Maria Elena Quispe Mamani" [ref=f45e111]
+              - cell "Bs 3,000.00" [ref=f45e112]
+              - cell "activo" [ref=f45e113]
+            - row [ref=f45e115]:
+              - cell [ref=f45e116]:
+                - link "PRE-0003" [ref=f45e117] [cursor=pointer]:
+                  - /url: /prestamos/3
+              - cell "Carlos Alberto Huaman Con..." [ref=f45e118]
+              - cell "Bs 1,500.00" [ref=f45e119]
+              - cell "activo" [ref=f45e120]
+            - row [ref=f45e122]:
+              - cell [ref=f45e123]:
+                - link "PRE-0001" [ref=f45e124] [cursor=pointer]:
+                  - /url: /prestamos/1
+              - cell "Maria Elena Quispe Mamani" [ref=f45e125]
+              - cell "Bs 2,000.00" [ref=f45e126]
+              - cell "activo" [ref=f45e127]
+            - row [ref=f45e129]:
+              - cell [ref=f45e130]:
+                - link "PRE-0004" [ref=f45e131] [cursor=pointer]:
+                  - /url: /prestamos/4
+              - cell "Juana Rosa Lopez Garcia" [ref=f45e132]
+              - cell "Bs 5,000.00" [ref=f45e133]
+              - cell "activo" [ref=f45e134]
+      - generic [ref=f45e137]:
+        - generic [ref=f45e138]:
+          - generic [ref=f45e139]:
+            - generic [ref=f45e140]: 
+            - text: Últimos Pagos
+          - link "Ver Todos" [ref=f45e141] [cursor=pointer]:
+            - /url: /pagos/
+        - table [ref=f45e144]:
+          - rowgroup [ref=f45e145]:
+            - row [ref=f45e146]:
+              - columnheader "Pago" [ref=f45e147]
+              - columnheader "Préstamo" [ref=f45e148]
+              - columnheader "Monto" [ref=f45e149]
+              - columnheader "Método" [ref=f45e150]
+          - rowgroup [ref=f45e151]:
+            - row [ref=f45e152]:
+              - cell "No hay pagos recientes" [ref=f45e153]
+    - contentinfo [ref=f45e154]: © 2026 MiCredit — Sistema de Gestión de Microcréditos v1.0

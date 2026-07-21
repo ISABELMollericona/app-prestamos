@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block title %}Simulador - MiCredit{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h4 class="mb-0"><i class="bi bi-calculator"></i> Simulador de Préstamos</h4>
+</div>
+
+<div class="row g-3">
+    <div class="col-md-5">
+        <div class="card">
+            <div class="card-header">Parámetros</div>
+            <div class="card-body">
+                <form method="POST">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                    <div class="mb-3">
+                        <label class="form-label">Monto a Solicitar (Bs)</label>
+                        <input type="number" class="form-control" name="monto" step="0.01" min="1" value="{{ request.form.get('monto', '') }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Tasa de Interés Anual (%)</label>
+                        <input type="number" class="form-control" name="tasa" step="0.01" min="0.01" value="{{ request.form.get('tasa', '36') }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Plazo (Meses)</label>
+                        <input type="number" class="form-control" name="plazo" min="1" max="120" value="{{ request.form.get('plazo', '12') }}" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100"><i class="bi bi-graph-up"></i> Calcular</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-7">
+        {% if resultado %}
+        <div class="card">
+            <div class="card-header">Resultado de la Proyección</div>
+            <div class="card-body">
+                <div class="row text-center">
+                    <div class="col-4">
+                        <div class="p-3 bg-light rounded">
+                            <small class="text-muted">Cuota Mensual</small>
+                            <h3 class="text-primary mb-0">Bs {{ "{:,.2f}".format(resultado.cuota_mensual) }}</h3>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="p-3 bg-light rounded">
+                            <small class="text-muted">Total Intereses</small>
+                            <h3 class="text-warning mb-0">Bs {{ "{:,.2f}".format(resultado.total_interes) }}</h3>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="p-3 bg-light rounded">
+                            <small class="text-muted">Total a Pagar</small>
+                            <h3 class="text-success mb-0">Bs {{ "{:,.2f}".format(resultado.total_pagar) }}</h3>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <table class="table table-sm">
+                    <tr><th>Monto:</th><td>Bs {{ "{:,.2f}".format(resultado.monto) }}</td></tr>
+                    <tr><th>Tasa Anual:</th><td>{{ "{:.2f}".format(resultado.tasa_anual) }}%</td></tr>
+                    <tr><th>Plazo:</th><td>{{ resultado.plazo_meses }} meses</td></tr>
+                    <tr><th>Cuota Mensual:</th><td><strong>Bs {{ "{:,.2f}".format(resultado.cuota_mensual) }}</strong></td></tr>
+                    <tr><th>Total Intereses:</th><td>Bs {{ "{:,.2f}".format(resultado.total_interes) }}</td></tr>
+                    <tr><th>Total a Pagar:</th><td>Bs {{ "{:,.2f}".format(resultado.total_pagar) }}</td></tr>
+                </table>
+            </div>
+        </div>
+        {% else %}
+        <div class="card">
+            <div class="card-body text-center text-muted py-5">
+                <i class="bi bi-calculator" style="font-size: 3rem;"></i>
+                <p class="mt-2">Ingrese los parámetros y presione "Calcular" para ver la proyección.</p>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

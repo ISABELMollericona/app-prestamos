@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block title %}{{ pago.codigo_pago }} - MiCredit{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h4 class="mb-0"><i class="bi bi-receipt"></i> Pago {{ pago.codigo_pago }}</h4>
+    <div>
+        <a href="{{ url_for('pagos.voucher_pdf', id=pago.id) }}" class="btn btn-primary"><i class="bi bi-file-pdf"></i> Voucher PDF</a>
+        <a href="{{ url_for('pagos.listar') }}" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Volver</a>
+    </div>
+</div>
+
+<div class="row g-3">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">Detalle del Pago</div>
+            <div class="card-body">
+                <table class="table table-sm">
+                    <tr><th>Código:</th><td>{{ pago.codigo_pago }}</td></tr>
+                    <tr><th>Préstamo:</th><td><a href="{{ url_for('prestamos.detalle', id=pago.prestamo_id) }}">{{ pago.prestamo.codigo_prestamo }}</a></td></tr>
+                    <tr><th>Cliente:</th><td><a href="{{ url_for('clientes.detalle', id=pago.cliente_id) }}">{{ pago.cliente.nombre_completo }}</a></td></tr>
+                    <tr><th>Monto Total:</th><td><strong>Bs {{ "{:,.2f}".format(pago.monto_total) }}</strong></td></tr>
+                    <tr><th>Monto Cuotas:</th><td>Bs {{ "{:,.2f}".format(pago.monto_cuota or 0) }}</td></tr>
+                    <tr><th>Mora:</th><td>Bs {{ "{:,.2f}".format(pago.monto_mora or 0) }}</td></tr>
+                    <tr><th>Cuotas Pagadas:</th><td>{{ pago.cuotas_pagadas }}</td></tr>
+                    <tr><th>Método:</th><td>{{ pago.metodo_pago }}</td></tr>
+                    <tr><th>N° Operación:</th><td>{{ pago.numero_operacion or '-' }}</td></tr>
+                    <tr><th>Fecha:</th><td>{{ pago.fecha_pago.strftime('%d/%m/%Y %H:%M') }}</td></tr>
+                    <tr><th>Registrado por:</th><td>{{ pago.usuario.nombre_completo if pago.usuario else '-' }}</td></tr>
+                </table>
+                {% if pago.observaciones %}
+                <p><strong>Obs.:</strong> {{ pago.observaciones }}</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">Cuotas Pagadas</div>
+            <div class="card-body p-0">
+                <table class="table table-sm mb-0">
+                    <thead>
+                        <tr><th>#</th><th>Vencimiento</th><th>Monto Cuota</th><th>Interés</th><th>Amortización</th></tr>
+                    </thead>
+                    <tbody>
+                        {% for c in cuotas %}
+                        <tr>
+                            <td>{{ c.numero_cuota }}</td>
+                            <td>{{ c.fecha_vencimiento.strftime('%d/%m/%Y') }}</td>
+                            <td>Bs {{ "{:,.2f}".format(c.monto_cuota or 0) }}</td>
+                            <td>Bs {{ "{:,.2f}".format(c.interes or 0) }}</td>
+                            <td>Bs {{ "{:,.2f}".format(c.amortizacion or 0) }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,102 @@
+- generic [active] [ref=f37e1]:
+  - generic [ref=f37e2]:
+    - link [ref=f37e4] [cursor=pointer]:
+      - /url: /
+      - heading " MiCredit" [level=5] [ref=f37e5]:
+        - generic [ref=f37e6]: 
+        - text: MiCredit
+      - text: Sistema de Microfinanzas
+    - generic [ref=f37e7]: Principal
+    - list [ref=f37e8]:
+      - listitem [ref=f37e9]:
+        - link " Dashboard" [ref=f37e10] [cursor=pointer]:
+          - /url: /
+          - generic [ref=f37e11]: 
+          - text: Dashboard
+    - generic [ref=f37e12]: Gestión
+    - list [ref=f37e13]:
+      - listitem [ref=f37e14]:
+        - link " Clientes" [ref=f37e15] [cursor=pointer]:
+          - /url: /clientes/
+          - generic [ref=f37e16]: 
+          - text: Clientes
+      - listitem [ref=f37e17]:
+        - link " Préstamos" [ref=f37e18] [cursor=pointer]:
+          - /url: /prestamos/
+          - generic [ref=f37e19]: 
+          - text: Préstamos
+      - listitem [ref=f37e20]:
+        - link " Pagos" [ref=f37e21] [cursor=pointer]:
+          - /url: /pagos/
+          - generic [ref=f37e22]: 
+          - text: Pagos
+    - generic [ref=f37e23]: Herramientas
+    - list [ref=f37e24]:
+      - listitem [ref=f37e25]:
+        - link " Reportes" [ref=f37e26] [cursor=pointer]:
+          - /url: /reportes/
+          - generic [ref=f37e27]: 
+          - text: Reportes
+      - listitem [ref=f37e28]:
+        - link " Simulador" [ref=f37e29] [cursor=pointer]:
+          - /url: /prestamos/proyectar
+          - generic [ref=f37e30]: 
+          - text: Simulador
+    - generic [ref=f37e31]: Administración
+    - list [ref=f37e32]:
+      - listitem [ref=f37e33]:
+        - link " Usuarios" [ref=f37e34] [cursor=pointer]:
+          - /url: /usuarios/
+          - generic [ref=f37e35]: 
+          - text: Usuarios
+  - generic [ref=f37e36]:
+    - navigation [ref=f37e37]:
+      - generic [ref=f37e39]:
+        - generic [ref=f37e40]: 
+        - text: 17/07/2026
+      - list [ref=f37e41]:
+        - listitem [ref=f37e42]:
+          - link "AD administrador" [ref=f37e43] [cursor=pointer]:
+            - /url: "#"
+            - generic [ref=f37e44]: AD
+            - generic [ref=f37e45]: administrador
+          - text:  
+    - generic [ref=f37e46]:
+      - heading " Nuevo Usuario" [level=4] [ref=f37e47]:
+        - generic [ref=f37e48]: 
+        - text: Nuevo Usuario
+      - link " Volver" [ref=f37e49] [cursor=pointer]:
+        - /url: /usuarios/
+        - generic [ref=f37e50]: 
+        - text: Volver
+    - generic [ref=f37e53]:
+      - generic [ref=f37e54]: Crear Usuario
+      - generic [ref=f37e56]:
+        - generic [ref=f37e57]:
+          - generic [ref=f37e58]:
+            - generic [ref=f37e59]: Nombre de Usuario
+            - textbox [ref=f37e60]: admin
+          - generic [ref=f37e61]:
+            - generic [ref=f37e62]: Rol
+            - combobox [ref=f37e63]:
+              - option "Seleccione..." [selected]
+              - option "Administrador"
+              - option "Gerente"
+              - option "Asesor"
+              - option "Cajero"
+          - generic [ref=f37e64]:
+            - generic [ref=f37e65]: Nombre Completo
+            - textbox [ref=f37e66]
+          - generic [ref=f37e67]:
+            - generic [ref=f37e68]: Email
+            - textbox [ref=f37e69]
+          - generic [ref=f37e70]:
+            - generic [ref=f37e71]: Contraseña
+            - textbox [ref=f37e72]: admin123
+        - generic [ref=f37e73]:
+          - button " Crear Usuario" [ref=f37e74] [cursor=pointer]:
+            - generic [ref=f37e75]: 
+            - text: Crear Usuario
+          - link "Cancelar" [ref=f37e76] [cursor=pointer]:
+            - /url: /usuarios/
+    - contentinfo [ref=f37e77]: © 2026 MiCredit — Sistema de Gestión de Microcréditos v1.0

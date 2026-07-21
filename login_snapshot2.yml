@@ -1,0 +1,112 @@
+- generic [ref=f1e3]:
+  - text:       
+  - main [ref=f1e4]:
+    - navigation [ref=f1e5]:
+      - generic [ref=f1e6]:
+        - generic [ref=f1e7]:
+          - generic [ref=f1e8]: 
+          - text: 17/07/2026
+        - list [ref=f1e9]:
+          - listitem [ref=f1e10]:
+            - link " Administrador del Sistema administrador" [ref=f1e11] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=f1e12]: 
+              - text: Administrador del Sistema
+              - generic [ref=f1e13]: administrador
+            - text:  
+    - generic [ref=f1e14]:
+      - heading " Dashboard" [level=4] [ref=f1e15]:
+        - generic [ref=f1e16]: 
+        - text: Dashboard
+      - generic [ref=f1e17]:
+        - link " Nuevo Préstamo" [ref=f1e18] [cursor=pointer]:
+          - /url: /prestamos/nuevo
+          - generic [ref=f1e19]: 
+          - text: Nuevo Préstamo
+        - link " Registrar Pago" [ref=f1e20] [cursor=pointer]:
+          - /url: /pagos/nuevo
+          - generic [ref=f1e21]: 
+          - text: Registrar Pago
+    - generic [ref=f1e22]:
+      - generic [ref=f1e26]:
+        - generic [ref=f1e27]:
+          - paragraph [ref=f1e28]: Préstamos Activos
+          - heading "4" [level=3] [ref=f1e29]
+        - generic [ref=f1e30]: 
+      - generic [ref=f1e35]:
+        - generic [ref=f1e36]:
+          - paragraph [ref=f1e37]: Clientes Registrados
+          - heading "3" [level=3] [ref=f1e38]
+        - generic [ref=f1e39]: 
+      - generic [ref=f1e44]:
+        - generic [ref=f1e45]:
+          - paragraph [ref=f1e46]: Cartera Total
+          - heading "S/ 11,500.00" [level=3] [ref=f1e47]
+        - generic [ref=f1e48]: 
+      - generic [ref=f1e53]:
+        - generic [ref=f1e54]:
+          - paragraph [ref=f1e55]: Cobranza Hoy
+          - heading "S/ 0.00" [level=3] [ref=f1e56]
+        - generic [ref=f1e57]: 
+    - generic [ref=f1e59]:
+      - generic [ref=f1e61]:
+        - generic [ref=f1e62]:
+          - generic [ref=f1e63]:
+            - generic [ref=f1e64]: 
+            - text: Préstamos Recientes
+          - link "Ver Todos" [ref=f1e65] [cursor=pointer]:
+            - /url: /prestamos/
+        - table [ref=f1e68]:
+          - rowgroup [ref=f1e69]:
+            - row [ref=f1e70]:
+              - columnheader "Código" [ref=f1e71]
+              - columnheader "Cliente" [ref=f1e72]
+              - columnheader "Monto" [ref=f1e73]
+              - columnheader "Estado" [ref=f1e74]
+          - rowgroup [ref=f1e75]:
+            - row [ref=f1e76]:
+              - cell [ref=f1e77]:
+                - link "PRE-0002" [ref=f1e78] [cursor=pointer]:
+                  - /url: /prestamos/2
+              - cell "Maria Elena Quispe Mamani" [ref=f1e79]
+              - cell "S/ 3,000.00" [ref=f1e80]
+              - cell "activo" [ref=f1e81]
+            - row [ref=f1e83]:
+              - cell [ref=f1e84]:
+                - link "PRE-0003" [ref=f1e85] [cursor=pointer]:
+                  - /url: /prestamos/3
+              - cell "Carlos Alberto Huaman Con..." [ref=f1e86]
+              - cell "S/ 1,500.00" [ref=f1e87]
+              - cell "activo" [ref=f1e88]
+            - row [ref=f1e90]:
+              - cell [ref=f1e91]:
+                - link "PRE-0001" [ref=f1e92] [cursor=pointer]:
+                  - /url: /prestamos/1
+              - cell "Maria Elena Quispe Mamani" [ref=f1e93]
+              - cell "S/ 2,000.00" [ref=f1e94]
+              - cell "activo" [ref=f1e95]
+            - row [ref=f1e97]:
+              - cell [ref=f1e98]:
+                - link "PRE-0004" [ref=f1e99] [cursor=pointer]:
+                  - /url: /prestamos/4
+              - cell "Juana Rosa Lopez Garcia" [ref=f1e100]
+              - cell "S/ 5,000.00" [ref=f1e101]
+              - cell "activo" [ref=f1e102]
+      - generic [ref=f1e105]:
+        - generic [ref=f1e106]:
+          - generic [ref=f1e107]:
+            - generic [ref=f1e108]: 
+            - text: Últimos Pagos
+          - link "Ver Todos" [ref=f1e109] [cursor=pointer]:
+            - /url: /pagos/
+        - table [ref=f1e112]:
+          - rowgroup [ref=f1e113]:
+            - row [ref=f1e114]:
+              - columnheader "Pago" [ref=f1e115]
+              - columnheader "Préstamo" [ref=f1e116]
+              - columnheader "Monto" [ref=f1e117]
+              - columnheader "Método" [ref=f1e118]
+          - rowgroup [ref=f1e119]:
+            - row [ref=f1e120]:
+              - cell "No hay pagos recientes" [ref=f1e121]
+    - generic [ref=f1e122]: © 2026 MiCredit - Sistema de Gestión de Microcréditos v1.0

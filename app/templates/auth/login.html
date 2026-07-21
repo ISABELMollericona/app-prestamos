@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block full_content %}
+<div class="container-fluid min-vh-100 d-flex align-items-center justify-content-center" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);">
+    <div class="row w-100 justify-content-center">
+        <div class="col-md-4 col-lg-3">
+            <div class="text-center mb-4">
+                <div class="d-inline-flex align-items-center justify-content-center rounded-circle mb-3" style="width: 72px; height: 72px; background: linear-gradient(135deg, #3b82f6, #8b5cf6);">
+                    <i class="bi bi-bank text-white" style="font-size: 2rem;"></i>
+                </div>
+                <h4 class="text-white fw-bold mb-1">MiCredit</h4>
+                <p class="text-white-50 small">Sistema de Gestión de Microcréditos</p>
+            </div>
+            <div class="card border-0 rounded-4 shadow-lg" style="background: rgba(255,255,255,.95); backdrop-filter: blur(12px);">
+                <div class="card-body p-4">
+                    <form method="POST">
+                        {{ form.hidden_tag() }}
+                        <div class="mb-3">
+                            <label class="form-label small fw-semibold text-dark">{{ form.username.label }}</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light border-end-0 rounded-start-3"><i class="bi bi-person text-muted"></i></span>
+                                {{ form.username(class="form-control border-start-0 ps-0" + (" is-invalid" if form.username.errors else ""), placeholder="Ingrese su usuario") }}
+                            </div>
+                            {% for error in form.username.errors %}
+                            <div class="invalid-feedback">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label small fw-semibold text-dark">{{ form.password.label }}</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light border-end-0 rounded-start-3"><i class="bi bi-lock text-muted"></i></span>
+                                {{ form.password(class="form-control border-start-0 ps-0" + (" is-invalid" if form.password.errors else ""), placeholder="Ingrese su contraseña") }}
+                            </div>
+                            {% for error in form.password.errors %}
+                            <div class="invalid-feedback">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                        <button type="submit" class="btn w-100 py-2 fw-semibold rounded-3 text-white" style="background: linear-gradient(135deg, #3b82f6, #8b5cf6); border: none;">
+                            <i class="bi bi-box-arrow-in-right me-2"></i> Iniciar Sesión
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <p class="text-center text-white-50 mt-3" style="font-size: .75rem;">&copy; 2026 MiCredit — Microfinanzas</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

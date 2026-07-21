@@ -1,0 +1,71 @@
+@startuml
+left to right direction
+
+actor Cliente
+actor "Asesor de Créditos" as Asesor
+actor Gerente
+actor Cajero
+actor Administrador
+
+rectangle "Sistema de Gestión de Préstamos y Créditos" {
+
+usecase "Autenticarse" as UC1
+
+usecase "Gestionar Clientes" as UC2
+
+usecase "Registrar Solicitud de\nPréstamo" as UC3
+
+usecase "Evaluar Solicitud" as UC4
+
+usecase "Aprobar / Rechazar\nPréstamo" as UC5
+
+usecase "Generar Tabla de\nAmortización" as UC6
+
+usecase "Generar Documento\ndel Préstamo" as UC7
+
+usecase "Desembolsar Préstamo" as UC8
+
+usecase "Registrar Pago" as UC9
+
+usecase "Consultar Estado\ndel Crédito" as UC10
+
+usecase "Reprogramar Crédito" as UC11
+
+usecase "Generar Reportes" as UC12
+
+usecase "Gestionar Usuarios" as UC13
+
+usecase "Configurar Tasas de\nInterés" as UC14
+
+usecase "Enviar Recordatorios\nde Pago" as UC15
+
+}
+
+Cliente --> UC3
+Cliente --> UC6
+Cliente --> UC10
+
+Asesor --> UC1
+Asesor --> UC2
+Asesor --> UC3
+Asesor --> UC4
+Asesor --> UC6
+Asesor --> UC7
+Asesor --> UC10
+
+Gerente --> UC5
+Gerente --> UC12
+
+Cajero --> UC8
+Cajero --> UC9
+Cajero --> UC10
+
+Administrador --> UC12
+Administrador --> UC13
+Administrador --> UC14
+
+UC4 ..> UC6 : <<include>>
+UC5 ..> UC7 : <<include>>
+UC9 ..> UC15 : <<extend>>
+
+@enduml

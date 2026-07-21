@@ -1,0 +1,116 @@
+- generic [active] [ref=f10e1]:
+  - generic [ref=f10e2]:
+    - link [ref=f10e4] [cursor=pointer]:
+      - /url: /
+      - heading " MiCredit" [level=5] [ref=f10e5]:
+        - generic [ref=f10e6]: 
+        - text: MiCredit
+      - text: Sistema de Microfinanzas
+    - generic [ref=f10e7]: Principal
+    - list [ref=f10e8]:
+      - listitem [ref=f10e9]:
+        - link " Dashboard" [ref=f10e10] [cursor=pointer]:
+          - /url: /
+          - generic [ref=f10e11]: 
+          - text: Dashboard
+    - generic [ref=f10e12]: Gestión
+    - list [ref=f10e13]:
+      - listitem [ref=f10e14]:
+        - link " Clientes" [ref=f10e15] [cursor=pointer]:
+          - /url: /clientes/
+          - generic [ref=f10e16]: 
+          - text: Clientes
+      - listitem [ref=f10e17]:
+        - link " Préstamos" [ref=f10e18] [cursor=pointer]:
+          - /url: /prestamos/
+          - generic [ref=f10e19]: 
+          - text: Préstamos
+      - listitem [ref=f10e20]:
+        - link " Pagos" [ref=f10e21] [cursor=pointer]:
+          - /url: /pagos/
+          - generic [ref=f10e22]: 
+          - text: Pagos
+    - generic [ref=f10e23]: Herramientas
+    - list [ref=f10e24]:
+      - listitem [ref=f10e25]:
+        - link " Simulador" [ref=f10e26] [cursor=pointer]:
+          - /url: /prestamos/proyectar
+          - generic [ref=f10e27]: 
+          - text: Simulador
+  - generic [ref=f10e28]:
+    - navigation [ref=f10e29]:
+      - generic [ref=f10e31]:
+        - generic [ref=f10e32]: 
+        - text: 17/07/2026
+      - list [ref=f10e33]:
+        - listitem [ref=f10e34]:
+          - link "CA cajero" [ref=f10e35] [cursor=pointer]:
+            - /url: "#"
+            - generic [ref=f10e36]: CA
+            - generic [ref=f10e37]: cajero
+          - text:  
+    - generic [ref=f10e38]:
+      - heading " Dashboard" [level=4] [ref=f10e39]:
+        - generic [ref=f10e40]: 
+        - text: Dashboard
+      - link " Registrar Pago" [ref=f10e42] [cursor=pointer]:
+        - /url: /pagos/nuevo
+        - generic [ref=f10e43]: 
+        - text: Registrar Pago
+    - generic [ref=f10e44]:
+      - generic [ref=f10e48]:
+        - generic [ref=f10e49]:
+          - paragraph [ref=f10e50]: Préstamos Activos
+          - heading "0" [level=3] [ref=f10e51]
+        - generic [ref=f10e52]: 
+      - generic [ref=f10e57]:
+        - generic [ref=f10e58]:
+          - paragraph [ref=f10e59]: Clientes Registrados
+          - heading "0" [level=3] [ref=f10e60]
+        - generic [ref=f10e61]: 
+      - generic [ref=f10e66]:
+        - generic [ref=f10e67]:
+          - paragraph [ref=f10e68]: Cartera Total
+          - heading "Bs 0.00" [level=3] [ref=f10e69]
+        - generic [ref=f10e70]: 
+      - generic [ref=f10e75]:
+        - generic [ref=f10e76]:
+          - paragraph [ref=f10e77]: Cobranza Hoy
+          - heading "Bs 0.00" [level=3] [ref=f10e78]
+        - generic [ref=f10e79]: 
+    - generic [ref=f10e81]:
+      - generic [ref=f10e83]:
+        - generic [ref=f10e84]:
+          - generic [ref=f10e85]:
+            - generic [ref=f10e86]: 
+            - text: Préstamos Recientes
+          - link "Ver Todos" [ref=f10e87] [cursor=pointer]:
+            - /url: /prestamos/
+        - table [ref=f10e90]:
+          - rowgroup [ref=f10e91]:
+            - row [ref=f10e92]:
+              - columnheader "Código" [ref=f10e93]
+              - columnheader "Cliente" [ref=f10e94]
+              - columnheader "Monto" [ref=f10e95]
+              - columnheader "Estado" [ref=f10e96]
+          - rowgroup [ref=f10e97]:
+            - row [ref=f10e98]:
+              - cell "No hay préstamos recientes" [ref=f10e99]
+      - generic [ref=f10e101]:
+        - generic [ref=f10e102]:
+          - generic [ref=f10e103]:
+            - generic [ref=f10e104]: 
+            - text: Últimos Pagos
+          - link "Ver Todos" [ref=f10e105] [cursor=pointer]:
+            - /url: /pagos/
+        - table [ref=f10e108]:
+          - rowgroup [ref=f10e109]:
+            - row [ref=f10e110]:
+              - columnheader "Pago" [ref=f10e111]
+              - columnheader "Préstamo" [ref=f10e112]
+              - columnheader "Monto" [ref=f10e113]
+              - columnheader "Método" [ref=f10e114]
+          - rowgroup [ref=f10e115]:
+            - row [ref=f10e116]:
+              - cell "No hay pagos recientes" [ref=f10e117]
+    - contentinfo [ref=f10e118]: © 2026 MiCredit — Sistema de Gestión de Microcréditos v1.0

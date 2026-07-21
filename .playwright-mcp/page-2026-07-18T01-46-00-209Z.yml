@@ -1,0 +1,19 @@
+- generic [ref=f41e6]:
+  - generic [ref=f41e7]:
+    - generic [ref=f41e8]: 
+    - heading "MiCredit" [level=4] [ref=f41e9]
+    - paragraph [ref=f41e10]: Sistema de Gestión de Microcréditos
+  - generic [ref=f41e11]:
+    - generic [ref=f41e12]:
+      - generic [ref=f41e13]: Usuario
+      - textbox "Usuario" [ref=f41e15]:
+        - /placeholder: Ingrese su usuario
+        - text: cajero1
+    - generic [ref=f41e16]:
+      - generic [ref=f41e17]: Contraseña
+      - textbox "Contraseña" [ref=f41e19]:
+        - /placeholder: Ingrese su contraseña
+        - text: cajero123
+    - button " Iniciar Sesión" [ref=f41e20] [cursor=pointer]:
+      - generic [ref=f41e21]: 
+      - text: Iniciar Sesión

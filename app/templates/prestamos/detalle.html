@@ -1,0 +1,173 @@
+{% extends "base.html" %}
+{% block title %}{{ prestamo.codigo_prestamo }} - MiCredit{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h4 class="mb-0"><i class="bi bi-file-earmark-text"></i> {{ prestamo.codigo_prestamo }}</h4>
+    <div>
+        {% if prestamo.estado == 'aprobado' and current_user.has_any_role('administrador', 'cajero') %}
+        <form method="POST" action="{{ url_for('prestamos.desembolsar', id=prestamo.id) }}" style="display:inline">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <button class="btn btn-success" onclick="return confirm('¿Confirmar desembolso? Se generará el cronograma automáticamente.')">
+                <i class="bi bi-cash"></i> Desembolsar
+            </button>
+        </form>
+        {% endif %}
+        <a href="{{ url_for('prestamos.cronograma_pdf', id=prestamo.id) }}" class="btn btn-outline-primary">
+            <i class="bi bi-file-pdf"></i> Cronograma PDF
+        </a>
+        <a href="{{ url_for('prestamos.listar') }}" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Volver</a>
+    </div>
+</div>
+
+<div class="row g-3 mb-4">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header"><i class="bi bi-info-circle"></i> Información del Préstamo</div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <table class="table table-sm">
+                            <tr><th>Cliente:</th><td><a href="{{ url_for('clientes.detalle', id=prestamo.cliente_id) }}">{{ prestamo.cliente.nombre_completo }}</a></td></tr>
+                            <tr><th>Documento:</th><td>{{ prestamo.cliente.tipo_documento }} {{ prestamo.cliente.numero_documento }}</td></tr>
+                            <tr><th>Monto Solicitado:</th><td>Bs {{ "{:,.2f}".format(prestamo.monto_solicitado) }}</td></tr>
+                            <tr><th>Monto Aprobado:</th><td>Bs {{ "{:,.2f}".format(prestamo.monto_aprobado) if prestamo.monto_aprobado else '-' }}</td></tr>
+                            <tr><th>Saldo Pendiente:</th><td><strong>Bs {{ "{:,.2f}".format(prestamo.saldo_pendiente or 0) }}</strong></td></tr>
+                        </table>
+                    </div>
+                    <div class="col-md-6">
+                        <table class="table table-sm">
+                            <tr><th>Plazo:</th><td>{{ prestamo.plazo_meses }} meses</td></tr>
+                            <tr><th>Tasa:</th><td>{{ "{:.2f}".format((prestamo.tasa_interes_valor or 0) * 100) }}% {{ prestamo.tipo_tasa or 'anual' }}</td></tr>
+                            <tr><th>Método:</th><td>{{ prestamo.metodo_amortizacion.capitalize() }}</td></tr>
+                            <tr><th>Cuota:</th><td>Bs {{ "{:,.2f}".format(prestamo.monto_cuota or 0) }}</td></tr>
+                            <tr><th>Estado:</th><td><span class="badge bg-{% if prestamo.estado == 'activo' %}info{% elif prestamo.estado == 'aprobado' %}success{% elif prestamo.estado == 'pendiente' %}warning{% elif prestamo.estado == 'cerrado' %}secondary{% else %}secondary{% endif %}">{{ prestamo.estado }}</span></td></tr>
+                            <tr><th>Solicitud:</th><td>{{ prestamo.fecha_solicitud.strftime('%d/%m/%Y') }}</td></tr>
+                            {% if prestamo.fecha_desembolso %}
+                            <tr><th>Desembolso:</th><td>{{ prestamo.fecha_desembolso.strftime('%d/%m/%Y') }}</td></tr>
+                            {% endif %}
+                        </table>
+                    </div>
+                </div>
+                {% if prestamo.observaciones %}
+                <div class="mt-2">
+                    <strong>Observaciones:</strong>
+                    <p class="text-muted">{{ prestamo.observaciones }}</p>
+                </div>
+                {% endif %}
+                {% if prestamo.motivo_rechazo %}
+                <div class="mt-2 alert alert-danger">
+                    <strong>Motivo de Rechazo:</strong> {{ prestamo.motivo_rechazo }}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header"><i class="bi bi-graph-up"></i> Progreso</div>
+            <div class="card-body text-center">
+                <div class="progress" style="height: 20px;">
+                    <div class="progress-bar bg-success" role="progressbar" style="width: {{ prestamo.progreso_pct }}%;" aria-valuenow="{{ prestamo.progreso_pct }}" aria-valuemin="0" aria-valuemax="100">
+                        {{ prestamo.progreso_pct }}%
+                    </div>
+                </div>
+                <p class="mt-2 mb-0">
+                    <span class="text-success">{{ prestamo.cuotas_pagadas }}</span> pagadas /
+                    <span class="text-secondary">{{ prestamo.cuotas_pendientes }}</span> pendientes
+                </p>
+            </div>
+        </div>
+
+        {% if prestamo.estado in ('pendiente', 'evaluacion') and current_user.has_any_role('gerente', 'administrador') %}
+        <div class="card mt-3">
+            <div class="card-header"><i class="bi bi-check-circle"></i> Acción Requerida</div>
+            <div class="card-body">
+                <a href="{{ url_for('prestamos.evaluar', id=prestamo.id) }}" class="btn btn-primary w-100">
+                    <i class="bi bi-clipboard-check"></i> Evaluar Solicitud
+                </a>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+{% if amortizaciones %}
+<div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <span><i class="bi bi-table"></i> Tabla de Amortización</span>
+        <span class="text-muted small">
+            Total Interés: Bs {{ "{:,.2f}".format(prestamo.total_interes or 0) }} |
+            Total a Pagar: Bs {{ "{:,.2f}".format(prestamo.total_a_pagar or 0) }}
+        </span>
+    </div>
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-sm table-hover mb-0">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Vencimiento</th>
+                        <th>Saldo Inicial</th>
+                        <th>Cuota</th>
+                        <th>Interés</th>
+                        <th>Amortización</th>
+                        <th>Seguro</th>
+                        <th>Total</th>
+                        <th>Saldo Final</th>
+                        <th>Mora</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for a in amortizaciones %}
+                    <tr class="{% if a.estado == 'pagada' %}table-success{% elif a.fecha_vencimiento < today and a.estado == 'pendiente' %}table-danger{% endif %}">
+                        <td>{{ a.numero_cuota }}</td>
+                        <td>{{ a.fecha_vencimiento.strftime('%d/%m/%Y') }}</td>
+                        <td>Bs {{ "{:,.2f}".format(a.saldo_inicial or 0) }}</td>
+                        <td>Bs {{ "{:,.2f}".format(a.monto_cuota or 0) }}</td>
+                        <td>Bs {{ "{:,.2f}".format(a.interes or 0) }}</td>
+                        <td>Bs {{ "{:,.2f}".format(a.amortizacion or 0) }}</td>
+                        <td>Bs {{ "{:,.2f}".format(a.seguro_desgravamen or 0) }}</td>
+                        <td><strong>Bs {{ "{:,.2f}".format(a.total_cuota or 0) }}</strong></td>
+                        <td>Bs {{ "{:,.2f}".format(a.saldo_final or 0) }}</td>
+                        <td>{% if a.mora > 0 %}Bs {{ "{:,.2f}".format(a.mora) }}{% else %}-{% endif %}</td>
+                        <td>
+                            <span class="badge bg-{% if a.estado == 'pagada' %}success{% elif a.estado == 'vencida' %}danger{% else %}secondary{% endif %}">
+                                {{ a.estado }}
+                            </span>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<div class="card mt-3">
+    <div class="card-header"><i class="bi bi-arrow-left-right"></i> Historial de Estados</div>
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-sm mb-0">
+                <thead>
+                    <tr><th>Fecha</th><th>Estado Anterior</th><th>Estado Nuevo</th><th>Usuario</th><th>Observaciones</th></tr>
+                </thead>
+                <tbody>
+                    {% for h in prestamo.historial_estados %}
+                    <tr>
+                        <td>{{ h.fecha_cambio.strftime('%d/%m/%Y %H:%M') }}</td>
+                        <td>{{ h.estado_anterior or '-' }}</td>
+                        <td><span class="badge bg-primary">{{ h.estado_nuevo }}</span></td>
+                        <td>{{ h.usuario.nombre_completo if h.usuario else '-' }}</td>
+                        <td>{{ h.observaciones or '-' }}</td>
+                    </tr>
+                    {% else %}
+                    <tr><td colspan="5" class="text-center text-muted py-2">Sin historial</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
