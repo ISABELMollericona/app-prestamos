@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, redirect, url_for, flash, request
 from flask_login import login_required, current_user
 from app import db
+from app.models import Usuario
 from datetime import datetime
 
 perfil_bp = Blueprint('perfil', __name__, url_prefix='/perfil')
@@ -20,6 +21,9 @@ def index():
             current_user.nombre_completo = nombre
 
         if email:
+            if Usuario.query.filter(Usuario.email == email, Usuario.id != current_user.id).first():
+                flash('El email ya está siendo usado por otro usuario.', 'error')
+                return render_template('perfil/perfil.html')
             current_user.email = email
 
         if password_actual and password_nuevo:

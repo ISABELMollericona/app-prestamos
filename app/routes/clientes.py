@@ -1,9 +1,12 @@
+import json
+from decimal import Decimal
 from flask import Blueprint, render_template, redirect, url_for, flash, request
 from flask_login import login_required, current_user
-from app.models import Cliente
+from app.models import Cliente, Prestamo
 from app.forms import ClienteForm
 from app import db
 from datetime import datetime
+from sqlalchemy import func
 
 clientes_bp = Blueprint('clientes', __name__, url_prefix='/clientes')
 
@@ -66,6 +69,9 @@ def nuevo():
             ingresos_mensuales=form.ingresos_mensuales.data,
             referencia_nombre=form.referencia_nombre.data,
             referencia_telefono=form.referencia_telefono.data,
+            latitud=form.latitud.data,
+            longitud=form.longitud.data,
+            foto=form.foto.data,
             observaciones=form.observaciones.data
         )
         db.session.add(cliente)
@@ -100,6 +106,45 @@ def detalle(id):
     cliente = Cliente.query.get_or_404(id)
     prestamos = cliente.prestamos
     return render_template('clientes/detalle.html', cliente=cliente, prestamos=prestamos)
+
+
+@clientes_bp.route('/mapa')
+@login_required
+def mapa():
+    clientes = Cliente.query.filter(
+        Cliente.activo == True,
+        Cliente.latitud.isnot(None),
+        Cliente.longitud.isnot(None)
+    ).order_by(Cliente.nombre_completo).all()
+
+    def decimal_default(obj):
+        if isinstance(obj, Decimal):
+            return float(obj)
+        raise TypeError
+
+    data = []
+    for c in clientes:
+        prestamos_activos = [p for p in c.prestamos if p.estado in ('activo', 'reprogramado', 'desembolsado')]
+        prestamos_count = len(c.prestamos)
+        activos_count = len(prestamos_activos)
+        total_adeudado = sum(float(p.saldo_pendiente or 0) for p in prestamos_activos)
+
+        data.append({
+            'id': c.id,
+            'codigo': c.codigo_cliente,
+            'nombre': c.nombre_completo,
+            'documento': f'{c.tipo_documento} {c.numero_documento}',
+            'celular': c.celular or '',
+            'direccion': c.direccion or '',
+            'distrito': c.distrito or '',
+            'latitud': float(c.latitud),
+            'longitud': float(c.longitud),
+            'total_prestamos': prestamos_count,
+            'prestamos_activos': activos_count,
+            'saldo_pendiente': total_adeudado
+        })
+
+    return render_template('clientes/mapa.html', clientes_json=json.dumps(data, default=decimal_default))
 
 
 @clientes_bp.route('/<int:id>/eliminar', methods=['POST'])

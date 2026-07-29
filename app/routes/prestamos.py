@@ -3,8 +3,10 @@ from flask_login import login_required, current_user
 from app.models import Prestamo, Cliente, TasaInteres, Amortizacion, HistorialEstado
 from app.forms import PrestamoForm, EvaluarPrestamoForm
 from app import db
-from app.amortization import generar_tabla_frances, generar_tabla_aleman, proyectar_prestamo
-from app.documents import generar_cronograma_pagos
+from app.amortization import (generar_tabla_frances, generar_tabla_aleman,
+                               generar_tabla_americano, recalcular_plan_pagos,
+                               proyectar_prestamo)
+from app.documents import generar_cronograma_pagos, generar_contrato_prenda_venta, generar_contrato_prenda_dacion, generar_contrato_prenda_garantia
 from datetime import datetime
 from decimal import Decimal, InvalidOperation
 
@@ -64,6 +66,7 @@ def nuevo():
             tasa_interes_valor=tasa.valor,
             tipo_tasa=tasa.tipo_tasa,
             plazo_meses=form.plazo_meses.data,
+            tipo_garantia=form.tipo_garantia.data,
             metodo_amortizacion=form.metodo_amortizacion.data,
             frecuencia_pago=form.frecuencia_pago.data,
             estado='pendiente',
@@ -178,6 +181,13 @@ def desembolsar(id):
             prestamo.plazo_meses,
             datetime.now().date()
         )
+    elif prestamo.metodo_amortizacion == 'americano':
+        amortizaciones, cuota = generar_tabla_americano(
+            Decimal(str(prestamo.monto_aprobado)),
+            tasa_decimal,
+            prestamo.plazo_meses,
+            datetime.now().date()
+        )
     else:
         amortizaciones = generar_tabla_aleman(
             Decimal(str(prestamo.monto_aprobado)),
@@ -185,7 +195,7 @@ def desembolsar(id):
             prestamo.plazo_meses,
             datetime.now().date()
         )
-        cuota = amortizaciones[0]['monto_cuota'] if amortizaciones else 0
+        cuota = amortizaciones[0]['monto_cuota'] if amortizaciones else Decimal('0')
 
     for item in amortizaciones:
         am = Amortizacion(
@@ -224,6 +234,62 @@ def desembolsar(id):
     return redirect(url_for('prestamos.detalle', id=prestamo.id))
 
 
+@prestamos_bp.route('/<int:id>/amortizar', methods=['GET', 'POST'])
+@login_required
+def amortizar(id):
+    if not current_user.has_any_role('administrador', 'cajero'):
+        flash('No tiene permisos para realizar amortizaciones.', 'error')
+        return redirect(url_for('prestamos.detalle', id=id))
+
+    prestamo = Prestamo.query.get_or_404(id)
+    if prestamo.estado not in ('activo', 'reprogramado'):
+        flash('Solo se pueden amortizar prestamos activos o reprogramados.', 'error')
+        return redirect(url_for('prestamos.detalle', id=id))
+
+    cuotas_pendientes = Amortizacion.query.filter_by(
+        prestamo_id=id, estado='pendiente'
+    ).order_by(Amortizacion.numero_cuota).all()
+
+    if not cuotas_pendientes:
+        flash('No hay cuotas pendientes.', 'error')
+        return redirect(url_for('prestamos.detalle', id=id))
+
+    if request.method == 'POST':
+        try:
+            monto_amortizar = Decimal(str(request.form.get('monto_amortizar', 0)))
+            if monto_amortizar <= 0:
+                flash('Monto invalido.', 'error')
+                return render_template('prestamos/amortizar.html', prestamo=prestamo, cuotas=cuotas_pendientes)
+
+            saldo_actual = cuotas_pendientes[0].saldo_inicial
+            if monto_amortizar > saldo_actual:
+                flash(f'El monto no puede superar el saldo pendiente (Bs {float(saldo_actual):,.2f}).', 'error')
+                return render_template('prestamos/amortizar.html', prestamo=prestamo, cuotas=cuotas_pendientes)
+
+            exito = recalcular_plan_pagos(prestamo, monto_amortizar, db)
+            if exito:
+                prestamo.fecha_actualizacion = datetime.now()
+                historial = HistorialEstado(
+                    prestamo_id=prestamo.id,
+                    estado_anterior='activo',
+                    estado_nuevo='reprogramado',
+                    usuario_id=current_user.id,
+                    observaciones=f'Amortizacion extraordinaria de Bs {float(monto_amortizar):,.2f}. Plan recalculado.'
+                )
+                db.session.add(historial)
+                prestamo.estado = 'reprogramado'
+                db.session.commit()
+                flash(f'Amortizacion de Bs {float(monto_amortizar):,.2f} aplicada. Plan de pagos recalculado.', 'success')
+            else:
+                flash('Error al recalcular el plan.', 'error')
+        except (ValueError, InvalidOperation) as e:
+            flash(f'Error: {str(e)}', 'error')
+
+        return redirect(url_for('prestamos.detalle', id=id))
+
+    return render_template('prestamos/amortizar.html', prestamo=prestamo, cuotas=cuotas_pendientes)
+
+
 @prestamos_bp.route('/proyectar', methods=['GET', 'POST'])
 @login_required
 def proyectar():
@@ -238,6 +304,40 @@ def proyectar():
             flash('Datos inválidos para la proyección.', 'error')
 
     return render_template('prestamos/proyectar.html', resultado=resultado)
+
+
+@prestamos_bp.route('/<int:id>/documento/<tipo>')
+@login_required
+def generar_documento(id, tipo):
+    from flask import send_file
+    prestamo = Prestamo.query.get_or_404(id)
+    if prestamo.estado not in ('aprobado', 'activo'):
+        flash('El prestamo debe estar aprobado o activo.', 'error')
+        return redirect(url_for('prestamos.detalle', id=id))
+
+    pdf = None
+    if tipo == 'cronograma':
+        amortizaciones = Amortizacion.query.filter_by(prestamo_id=id).order_by(Amortizacion.numero_cuota).all()
+        if not amortizaciones:
+            flash('No hay cronograma generado.', 'error')
+            return redirect(url_for('prestamos.detalle', id=id))
+        pdf = generar_cronograma_pagos(prestamo, amortizaciones)
+        filename = f'cronograma_{prestamo.codigo_prestamo}.pdf'
+    elif tipo == 'contrato_venta':
+        pdf = generar_contrato_prenda_venta(prestamo)
+        filename = f'contrato_venta_pacto_rescate_{prestamo.codigo_prestamo}.pdf'
+    elif tipo == 'dacion_pago':
+        pdf = generar_contrato_prenda_dacion(prestamo)
+        filename = f'dacion_pago_{prestamo.codigo_prestamo}.pdf'
+    elif tipo == 'garantia_prendaria':
+        pdf = generar_contrato_prenda_garantia(prestamo)
+        filename = f'garantia_prendaria_{prestamo.codigo_prestamo}.pdf'
+    else:
+        flash('Tipo de documento no valido.', 'error')
+        return redirect(url_for('prestamos.detalle', id=id))
+
+    return send_file(pdf, download_name=filename,
+                     as_attachment=False, mimetype='application/pdf')
 
 
 @prestamos_bp.route('/<int:id>/cronograma')

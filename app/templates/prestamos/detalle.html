@@ -7,14 +7,26 @@
         {% if prestamo.estado == 'aprobado' and current_user.has_any_role('administrador', 'cajero') %}
         <form method="POST" action="{{ url_for('prestamos.desembolsar', id=prestamo.id) }}" style="display:inline">
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-            <button class="btn btn-success" onclick="return confirm('¿Confirmar desembolso? Se generará el cronograma automáticamente.')">
+            <button class="btn btn-success" onclick="return confirm('Confirmar desembolso? Se generara el cronograma.')">
                 <i class="bi bi-cash"></i> Desembolsar
             </button>
         </form>
         {% endif %}
-        <a href="{{ url_for('prestamos.cronograma_pdf', id=prestamo.id) }}" class="btn btn-outline-primary">
-            <i class="bi bi-file-pdf"></i> Cronograma PDF
-        </a>
+        <div class="btn-group">
+            <button class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
+                <i class="bi bi-file-pdf"></i> Documentos
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{{ url_for('prestamos.cronograma_pdf', id=prestamo.id) }}"><i class="bi bi-table"></i> Cronograma de Pagos</a></li>
+                {% if prestamo.tipo_garantia == 'prendaria' %}
+                <li><hr class="dropdown-divider"></li>
+                <li><h6 class="dropdown-header">Garantia Prendaria</h6></li>
+                <li><a class="dropdown-item" href="{{ url_for('prestamos.generar_documento', id=prestamo.id, tipo='contrato_venta') }}"><i class="bi bi-file-text"></i> Venta con Pacto de Rescate</a></li>
+                <li><a class="dropdown-item" href="{{ url_for('prestamos.generar_documento', id=prestamo.id, tipo='dacion_pago') }}"><i class="bi bi-file-text"></i> Dacion en Pago</a></li>
+                <li><a class="dropdown-item" href="{{ url_for('prestamos.generar_documento', id=prestamo.id, tipo='garantia_prendaria') }}"><i class="bi bi-file-text"></i> Prestamo con Garantia Prendaria</a></li>
+                {% endif %}
+            </ul>
+        </div>
         <a href="{{ url_for('prestamos.listar') }}" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Volver</a>
     </div>
 </div>
@@ -22,7 +34,7 @@
 <div class="row g-3 mb-4">
     <div class="col-md-8">
         <div class="card">
-            <div class="card-header"><i class="bi bi-info-circle"></i> Información del Préstamo</div>
+            <div class="card-header"><i class="bi bi-info-circle"></i> Informacion del Prestamo</div>
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-6">
@@ -38,7 +50,8 @@
                         <table class="table table-sm">
                             <tr><th>Plazo:</th><td>{{ prestamo.plazo_meses }} meses</td></tr>
                             <tr><th>Tasa:</th><td>{{ "{:.2f}".format((prestamo.tasa_interes_valor or 0) * 100) }}% {{ prestamo.tipo_tasa or 'anual' }}</td></tr>
-                            <tr><th>Método:</th><td>{{ prestamo.metodo_amortizacion.capitalize() }}</td></tr>
+                            <tr><th>Metodo:</th><td>{{ prestamo.metodo_amortizacion.capitalize() }}</td></tr>
+                            <tr><th>Garantia:</th><td><span class="badge bg-info">{{ prestamo.tipo_garantia or 'personal' }}</span></td></tr>
                             <tr><th>Cuota:</th><td>Bs {{ "{:,.2f}".format(prestamo.monto_cuota or 0) }}</td></tr>
                             <tr><th>Estado:</th><td><span class="badge bg-{% if prestamo.estado == 'activo' %}info{% elif prestamo.estado == 'aprobado' %}success{% elif prestamo.estado == 'pendiente' %}warning{% elif prestamo.estado == 'cerrado' %}secondary{% else %}secondary{% endif %}">{{ prestamo.estado }}</span></td></tr>
                             <tr><th>Solicitud:</th><td>{{ prestamo.fecha_solicitud.strftime('%d/%m/%Y') }}</td></tr>
@@ -80,11 +93,42 @@
 
         {% if prestamo.estado in ('pendiente', 'evaluacion') and current_user.has_any_role('gerente', 'administrador') %}
         <div class="card mt-3">
-            <div class="card-header"><i class="bi bi-check-circle"></i> Acción Requerida</div>
+            <div class="card-header"><i class="bi bi-check-circle"></i> Accion Requerida</div>
             <div class="card-body">
                 <a href="{{ url_for('prestamos.evaluar', id=prestamo.id) }}" class="btn btn-primary w-100">
                     <i class="bi bi-clipboard-check"></i> Evaluar Solicitud
                 </a>
+            </div>
+        </div>
+        {% endif %}
+
+        {% if prestamo.estado in ('activo', 'reprogramado') and current_user.has_any_role('administrador', 'cajero') %}
+        <div class="card mt-3">
+            <div class="card-header"><i class="bi bi-arrow-repeat"></i> Amortizacion</div>
+            <div class="card-body">
+                <a href="{{ url_for('prestamos.amortizar', id=prestamo.id) }}" class="btn btn-warning w-100">
+                    <i class="bi bi-cash"></i> Amortizar y Recalcular
+                </a>
+                <small class="text-muted mt-2 d-block">Aplica un pago extraordinario y recalcula el plan.</small>
+            </div>
+        </div>
+        {% endif %}
+
+        {% if prestamo.tipo_garantia == 'prendaria' and prestamo.estado in ('aprobado', 'activo') %}
+        <div class="card mt-3">
+            <div class="card-header"><i class="bi bi-file-earmark"></i> Documentos Prendarios</div>
+            <div class="card-body">
+                <div class="d-grid gap-2">
+                    <a href="{{ url_for('prestamos.generar_documento', id=prestamo.id, tipo='contrato_venta') }}" class="btn btn-outline-primary btn-sm">
+                        <i class="bi bi-file-text"></i> Venta c/ Pacto Rescate
+                    </a>
+                    <a href="{{ url_for('prestamos.generar_documento', id=prestamo.id, tipo='dacion_pago') }}" class="btn btn-outline-primary btn-sm">
+                        <i class="bi bi-file-text"></i> Dacion en Pago
+                    </a>
+                    <a href="{{ url_for('prestamos.generar_documento', id=prestamo.id, tipo='garantia_prendaria') }}" class="btn btn-outline-primary btn-sm">
+                        <i class="bi bi-file-text"></i> Garantia Prendaria
+                    </a>
+                </div>
             </div>
         </div>
         {% endif %}
@@ -94,9 +138,9 @@
 {% if amortizaciones %}
 <div class="card">
     <div class="card-header d-flex justify-content-between align-items-center">
-        <span><i class="bi bi-table"></i> Tabla de Amortización</span>
+        <span><i class="bi bi-table"></i> Tabla de Amortizacion</span>
         <span class="text-muted small">
-            Total Interés: Bs {{ "{:,.2f}".format(prestamo.total_interes or 0) }} |
+            Total Interes: Bs {{ "{:,.2f}".format(prestamo.total_interes or 0) }} |
             Total a Pagar: Bs {{ "{:,.2f}".format(prestamo.total_a_pagar or 0) }}
         </span>
     </div>
@@ -109,8 +153,8 @@
                         <th>Vencimiento</th>
                         <th>Saldo Inicial</th>
                         <th>Cuota</th>
-                        <th>Interés</th>
-                        <th>Amortización</th>
+                        <th>Interes</th>
+                        <th>Amortizacion</th>
                         <th>Seguro</th>
                         <th>Total</th>
                         <th>Saldo Final</th>

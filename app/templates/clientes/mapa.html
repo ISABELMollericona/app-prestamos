@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% block title %}Mapa de Clientes - MiCredit{% endblock %}
+
+{% block extra_head %}
+<style>
+#mapa-clientes { height: calc(100vh - 200px); border-radius: 1rem; }
+.gm-style .gm-style-iw-c { border-radius: .75rem !important; }
+.gm-style .gm-style-iw-d { overflow: auto !important; }
+.info-cliente { min-width: 220px; padding: 2px; }
+.info-cliente h6 { font-weight: 700; margin-bottom: 4px; color: #0f172a; }
+.info-cliente .label { font-size: .72rem; color: #94a3b8; text-transform: uppercase; letter-spacing: .04em; }
+.info-cliente .value { font-size: .85rem; color: #1e293b; margin-bottom: 4px; }
+.info-cliente .badge-map { font-size: .7rem; padding: 2px 8px; border-radius: 4px; font-weight: 500; }
+.info-cliente .btn-sm-map { font-size: .75rem; padding: 2px 10px; border-radius: 6px; }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h4 class="page-title mb-0"><i class="bi bi-geo-alt me-2"></i>Mapa de Clientes</h4>
+    <span class="text-muted small" id="client-count">Cargando...</span>
+</div>
+
+<div class="card shadow-sm">
+    <div class="card-body p-2">
+        <div id="mapa-clientes"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+const clientes = {{ clientes_json | safe }};
+document.getElementById('client-count').textContent = clientes.length + ' clientes geolocalizados';
+
+function initMapa() {
+    const center = { lat: -17.7833, lng: -63.1822 };
+    const map = new google.maps.Map(document.getElementById('mapa-clientes'), {
+        center: center,
+        zoom: 6,
+        mapTypeControl: true,
+        streetViewControl: false,
+        fullscreenControl: true,
+    });
+
+    const bounds = new google.maps.LatLngBounds();
+    const infoWindow = new google.maps.InfoWindow();
+
+    clientes.forEach(function(c) {
+        const pos = { lat: c.latitud, lng: c.longitud };
+        bounds.extend(pos);
+
+        const marker = new google.maps.Marker({
+            position: pos,
+            map: map,
+            title: c.nombre,
+        });
+
+        const tienePrestamos = c.prestamos_activos > 0;
+        const estadoHtml = tienePrestamos
+            ? '<span class="badge-map" style="background:#dcfce7;color:#166534;">' + c.prestamos_activos + ' préstamo(s) activo(s)</span>'
+            : '<span class="badge-map" style="background:#fef2f2;color:#991b1b;">Sin préstamos activos</span>';
+
+        const saldoHtml = tienePrestamos
+            ? '<div><span class="label">Saldo pendiente</span><div class="value"><strong>Bs ' + c.saldo_pendiente.toFixed(2) + '</strong></div></div>'
+            : '';
+
+        const content =
+            '<div class="info-cliente">' +
+                '<h6>' + c.nombre + '</h6>' +
+                '<div><span class="label">Documento</span><div class="value">' + c.documento + '</div></div>' +
+                (c.celular ? '<div><span class="label">Celular</span><div class="value">' + c.celular + '</div></div>' : '') +
+                (c.direccion ? '<div><span class="label">Dirección</span><div class="value">' + c.direccion + (c.distrito ? ', ' + c.distrito : '') + '</div></div>' : '') +
+                '<div><span class="label">Préstamos totales</span><div class="value">' + c.total_prestamos + '</div></div>' +
+                '<div class="mb-2">' + estadoHtml + '</div>' +
+                saldoHtml +
+                '<div class="mt-2"><a href="/clientes/' + c.id + '" class="btn btn-primary btn-sm-map w-100 text-center d-block text-white text-decoration-none">Ver detalle</a></div>' +
+            '</div>';
+
+        marker.addListener('click', function() {
+            infoWindow.setContent(content);
+            infoWindow.open(map, marker);
+        });
+    });
+
+    if (clientes.length > 0) {
+        map.fitBounds(bounds);
+        if (clientes.length === 1) map.setZoom(15);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    if (typeof google !== 'undefined') initMapa();
+});
+
+window.initMapa = initMapa;
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZw4hvVYl_f4Nlxldv0_tW5FRVdjo8BOc&callback=initMapa" async defer></script>
+{% endblock %}

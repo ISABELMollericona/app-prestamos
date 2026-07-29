@@ -1,0 +1,174 @@
+- generic [active] [ref=f61e1]:
+  - generic [ref=f61e2]:
+    - link [ref=f61e4] [cursor=pointer]:
+      - /url: /
+      - heading " MiCredit" [level=5] [ref=f61e5]:
+        - generic [ref=f61e6]: 
+        - text: MiCredit
+      - text: Sistema de Microfinanzas
+    - generic [ref=f61e7]: Principal
+    - list [ref=f61e8]:
+      - listitem [ref=f61e9]:
+        - link " Dashboard" [ref=f61e10] [cursor=pointer]:
+          - /url: /
+          - generic [ref=f61e11]: 
+          - text: Dashboard
+    - generic [ref=f61e12]: Gestión
+    - list [ref=f61e13]:
+      - listitem [ref=f61e14]:
+        - link " Clientes" [ref=f61e15] [cursor=pointer]:
+          - /url: /clientes/
+          - generic [ref=f61e16]: 
+          - text: Clientes
+      - listitem [ref=f61e17]:
+        - link " Préstamos" [ref=f61e18] [cursor=pointer]:
+          - /url: /prestamos/
+          - generic [ref=f61e19]: 
+          - text: Préstamos
+      - listitem [ref=f61e20]:
+        - link " Pagos" [ref=f61e21] [cursor=pointer]:
+          - /url: /pagos/
+          - generic [ref=f61e22]: 
+          - text: Pagos
+    - generic [ref=f61e23]: Herramientas
+    - list [ref=f61e24]:
+      - listitem [ref=f61e25]:
+        - link " Reportes" [ref=f61e26] [cursor=pointer]:
+          - /url: /reportes/
+          - generic [ref=f61e27]: 
+          - text: Reportes
+      - listitem [ref=f61e28]:
+        - link " Simulador" [ref=f61e29] [cursor=pointer]:
+          - /url: /prestamos/proyectar
+          - generic [ref=f61e30]: 
+          - text: Simulador
+    - generic [ref=f61e31]: Administración
+    - list [ref=f61e32]:
+      - listitem [ref=f61e33]:
+        - link " Usuarios" [ref=f61e34] [cursor=pointer]:
+          - /url: /usuarios/
+          - generic [ref=f61e35]: 
+          - text: Usuarios
+  - generic [ref=f61e36]:
+    - navigation [ref=f61e37]:
+      - generic [ref=f61e39]:
+        - generic [ref=f61e40]: 
+        - text: 28/07/2026
+      - list [ref=f61e41]:
+        - listitem [ref=f61e42]:
+          - link "AD Admin Sistema administrador" [ref=f61e43] [cursor=pointer]:
+            - /url: "#"
+            - generic [ref=f61e44]: AD
+            - generic [ref=f61e45]: Admin Sistema
+            - generic [ref=f61e46]: administrador
+          - text:  
+    - generic [ref=f61e47]:
+      - 'heading " Amortizar Prestamo: PRE-0001" [level=4] [ref=f61e48]':
+        - generic [ref=f61e49]: 
+        - text: "Amortizar Prestamo: PRE-0001"
+      - link " Volver" [ref=f61e50] [cursor=pointer]:
+        - /url: /prestamos/1
+        - generic [ref=f61e51]: 
+        - text: Volver
+    - generic [ref=f61e52]:
+      - generic [ref=f61e53]:
+        - generic [ref=f61e54]:
+          - generic [ref=f61e55]:
+            - generic [ref=f61e56]: 
+            - text: Informacion del Prestamo
+          - table [ref=f61e58]:
+            - rowgroup [ref=f61e59]:
+              - row [ref=f61e60]:
+                - rowheader "Cliente:" [ref=f61e61]
+                - cell "Maria Rodriguez" [ref=f61e62]
+              - row [ref=f61e63]:
+                - rowheader "Saldo Pendiente:" [ref=f61e64]
+                - cell [ref=f61e65]:
+                  - strong [ref=f61e66]: Bs 10,000.00
+              - row [ref=f61e67]:
+                - rowheader "Cuotas Pendientes:" [ref=f61e68]
+                - cell "6" [ref=f61e69]
+              - row [ref=f61e70]:
+                - rowheader "Metodo:" [ref=f61e71]
+                - cell "Americano" [ref=f61e72]
+              - row [ref=f61e73]:
+                - rowheader "Cuota Actual:" [ref=f61e74]
+                - cell "Bs 300.00" [ref=f61e75]
+        - generic [ref=f61e76]:
+          - generic [ref=f61e77]:
+            - generic [ref=f61e78]: 
+            - text: Registrar Amortizacion
+          - generic [ref=f61e80]:
+            - generic [ref=f61e81]:
+              - generic [ref=f61e82]: Monto a Amortizar (Bs)
+              - spinbutton "0.00" [ref=f61e83]
+            - generic [ref=f61e85]:
+              - text: "Saldo actual:"
+              - strong [ref=f61e86]: Bs 10,000.00
+            - button " Aplicar Amortizacion y Recalcular" [ref=f61e87] [cursor=pointer]:
+              - generic [ref=f61e88]: 
+              - text: Aplicar Amortizacion y Recalcular
+      - generic [ref=f61e90]:
+        - generic [ref=f61e91]:
+          - generic [ref=f61e92]: 
+          - text: Cuotas Pendientes
+        - table [ref=f61e95]:
+          - rowgroup [ref=f61e96]:
+            - row [ref=f61e97]:
+              - columnheader "#" [ref=f61e98]
+              - columnheader "Vencimiento" [ref=f61e99]
+              - columnheader "Saldo Inicial" [ref=f61e100]
+              - columnheader "Cuota" [ref=f61e101]
+              - columnheader "Interes" [ref=f61e102]
+              - columnheader "Amortizacion" [ref=f61e103]
+              - columnheader "Total" [ref=f61e104]
+          - rowgroup [ref=f61e105]:
+            - row [ref=f61e106]:
+              - cell "1" [ref=f61e107]
+              - cell "28/08/2026" [ref=f61e108]
+              - cell "Bs 10,000.00" [ref=f61e109]
+              - cell "Bs 300.00" [ref=f61e110]
+              - cell "Bs 300.00" [ref=f61e111]
+              - cell "Bs 0.00" [ref=f61e112]
+              - cell "Bs 303.00" [ref=f61e113]
+            - row [ref=f61e114]:
+              - cell "2" [ref=f61e115]
+              - cell "28/09/2026" [ref=f61e116]
+              - cell "Bs 10,000.00" [ref=f61e117]
+              - cell "Bs 300.00" [ref=f61e118]
+              - cell "Bs 300.00" [ref=f61e119]
+              - cell "Bs 0.00" [ref=f61e120]
+              - cell "Bs 303.00" [ref=f61e121]
+            - row [ref=f61e122]:
+              - cell "3" [ref=f61e123]
+              - cell "28/10/2026" [ref=f61e124]
+              - cell "Bs 10,000.00" [ref=f61e125]
+              - cell "Bs 300.00" [ref=f61e126]
+              - cell "Bs 300.00" [ref=f61e127]
+              - cell "Bs 0.00" [ref=f61e128]
+              - cell "Bs 303.00" [ref=f61e129]
+            - row [ref=f61e130]:
+              - cell "4" [ref=f61e131]
+              - cell "28/11/2026" [ref=f61e132]
+              - cell "Bs 10,000.00" [ref=f61e133]
+              - cell "Bs 300.00" [ref=f61e134]
+              - cell "Bs 300.00" [ref=f61e135]
+              - cell "Bs 0.00" [ref=f61e136]
+              - cell "Bs 303.00" [ref=f61e137]
+            - row [ref=f61e138]:
+              - cell "5" [ref=f61e139]
+              - cell "28/12/2026" [ref=f61e140]
+              - cell "Bs 10,000.00" [ref=f61e141]
+              - cell "Bs 300.00" [ref=f61e142]
+              - cell "Bs 300.00" [ref=f61e143]
+              - cell "Bs 0.00" [ref=f61e144]
+              - cell "Bs 303.00" [ref=f61e145]
+            - row [ref=f61e146]:
+              - cell "6" [ref=f61e147]
+              - cell "28/01/2027" [ref=f61e148]
+              - cell "Bs 10,000.00" [ref=f61e149]
+              - cell "Bs 10,300.00" [ref=f61e150]
+              - cell "Bs 300.00" [ref=f61e151]
+              - cell "Bs 10,000.00" [ref=f61e152]
+              - cell "Bs 10,303.00" [ref=f61e153]
+    - contentinfo [ref=f61e154]: © 2026 MiCredit — Sistema de Gestión de Microcréditos v1.0

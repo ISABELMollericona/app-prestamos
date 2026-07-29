@@ -1,5 +1,11 @@
 {% extends "base.html" %}
 {% block title %}{{ titulo }} - MiCredit{% endblock %}
+{% block extra_head %}
+<style>
+  #map { width: 100%; height: 300px; border-radius: .6rem; border: 1.5px solid #e2e8f0; }
+  #map-preview { width: 100%; height: 250px; border-radius: .6rem; border: 1.5px solid #e2e8f0; }
+</style>
+{% endblock %}
 {% block content %}
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h4 class="mb-0"><i class="bi bi-person"></i> {{ titulo }}</h4>
@@ -66,11 +72,15 @@
             </div>
 
             <hr class="my-4">
-            <h6 class="text-muted">Dirección</h6>
+            <h6 class="text-muted">Direccion y Ubicacion (Google Maps)</h6>
             <div class="row g-3">
                 <div class="col-md-6">
                     {{ form.direccion.label(class="form-label") }}
                     {{ form.direccion(class="form-control", rows=2) }}
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Buscar direccion en Google Maps</label>
+                    <input type="text" id="pac-input" class="form-control" placeholder="Escriba la direccion...">
                 </div>
             </div>
             <div class="row g-3 mt-1">
@@ -85,6 +95,36 @@
                 <div class="col-md-4">
                     {{ form.departamento.label(class="form-label") }}
                     {{ form.departamento(class="form-control") }}
+                </div>
+            </div>
+            <div class="row g-3 mt-2">
+                <div class="col-md-6">
+                    {{ form.latitud.label(class="form-label") }}
+                    {{ form.latitud(class="form-control", id="latitud", readonly=true) }}
+                </div>
+                <div class="col-md-6">
+                    {{ form.longitud.label(class="form-label") }}
+                    {{ form.longitud(class="form-control", id="longitud", readonly=true) }}
+                </div>
+            </div>
+            <div class="row g-3 mt-2">
+                <div class="col-12">
+                    <div id="map"></div>
+                </div>
+            </div>
+
+            <hr class="my-4">
+            <h6 class="text-muted">Foto del Cliente</h6>
+            <div class="row g-3">
+                <div class="col-md-6">
+                    {{ form.foto.label(class="form-label") }}
+                    {{ form.foto(class="form-control", placeholder="https://ejemplo.com/foto.jpg") }}
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Vista previa</label>
+                    <div id="foto-preview" style="width:100px;height:100px;border-radius:50%;border:2px solid #e2e8f0;overflow:hidden;background:#f8fafc;">
+                        <img id="foto-img" src="" style="width:100%;height:100%;object-fit:cover;display:none;">
+                    </div>
                 </div>
             </div>
 
@@ -116,4 +156,70 @@
         </form>
     </div>
 </div>
+{% endblock %}
+{% block extra_scripts %}
+<script>
+let map, marker, autocomplete;
+
+function initMap() {
+    var lat = parseFloat(document.getElementById('latitud').value) || -17.7833;
+    var lng = parseFloat(document.getElementById('longitud').value) || -63.1822;
+    var pos = { lat: lat, lng: lng };
+
+    map = new google.maps.Map(document.getElementById('map'), {
+        center: pos,
+        zoom: 14,
+    });
+
+    marker = new google.maps.Marker({
+        position: pos,
+        map: map,
+        draggable: true,
+    });
+
+    google.maps.event.addListener(marker, 'dragend', function(ev) {
+        document.getElementById('latitud').value = ev.latLng.lat().toFixed(7);
+        document.getElementById('longitud').value = ev.latLng.lng().toFixed(7);
+    });
+
+    map.addListener('click', function(ev) {
+        marker.setPosition(ev.latLng);
+        document.getElementById('latitud').value = ev.latLng.lat().toFixed(7);
+        document.getElementById('longitud').value = ev.latLng.lng().toFixed(7);
+    });
+
+    autocomplete = new google.maps.places.Autocomplete(document.getElementById('pac-input'));
+    autocomplete.bindTo('bounds', map);
+    autocomplete.addListener('place_changed', function() {
+        var place = autocomplete.getPlace();
+        if (!place.geometry) return;
+        map.setCenter(place.geometry.location);
+        map.setZoom(16);
+        marker.setPosition(place.geometry.location);
+        document.getElementById('latitud').value = place.geometry.location.lat().toFixed(7);
+        document.getElementById('longitud').value = place.geometry.location.lng().toFixed(7);
+    });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    if (typeof google !== 'undefined') initMap();
+    var fotoInput = document.querySelector('input[name="foto"]');
+    if (fotoInput) {
+        fotoInput.addEventListener('change', function() {
+            var img = document.getElementById('foto-img');
+            if (this.value) {
+                img.src = this.value;
+                img.style.display = 'block';
+            } else {
+                img.style.display = 'none';
+            }
+        });
+        if (fotoInput.value) {
+            document.getElementById('foto-img').src = fotoInput.value;
+            document.getElementById('foto-img').style.display = 'block';
+        }
+    }
+});
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZw4hvVYl_f4Nlxldv0_tW5FRVdjo8BOc&libraries=places&callback=initMap" async defer></script>
 {% endblock %}

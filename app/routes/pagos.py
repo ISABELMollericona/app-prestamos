@@ -13,7 +13,7 @@ pagos_bp = Blueprint('pagos', __name__, url_prefix='/pagos')
 def generar_codigo_pago():
     ultimo = Pago.query.order_by(Pago.id.desc()).first()
     if ultimo:
-        num = int(ultimo.codigo_pago.split('-')[1]) + 1
+        num = int(ultimo.codigo_pago.split('-')[-1]) + 1
     else:
         num = 1
     return f'PAG-{datetime.now().strftime("%Y%m%d")}-{num:04d}'

@@ -1,5 +1,14 @@
 {% extends "base.html" %}
 {% block title %}{{ cliente.nombre_completo }} - MiCredit{% endblock %}
+{% block extra_head %}
+<style>
+  #map-detail { width: 100%; height: 300px; border-radius: .6rem; }
+  .info-window-content { text-align: center; }
+  .info-window-content img { width: 60px; height: 60px; border-radius: 50%; object-fit: cover; margin-bottom: 4px; }
+  .info-window-content h6 { margin: 2px 0; font-size: 13px; }
+  .info-window-content p { margin: 0; font-size: 11px; color: #666; }
+</style>
+{% endblock %}
 {% block content %}
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h4 class="mb-0"><i class="bi bi-person-badge"></i> {{ cliente.nombre_completo }}</h4>
@@ -8,7 +17,7 @@
         <a href="{{ url_for('clientes.editar', id=cliente.id) }}" class="btn btn-primary"><i class="bi bi-pencil"></i> Editar</a>
         {% endif %}
         {% if current_user.has_any_role('administrador', 'asesor') %}
-        <a href="{{ url_for('prestamos.nuevo') }}?cliente={{ cliente.id }}" class="btn btn-success"><i class="bi bi-plus-lg"></i> Nuevo Préstamo</a>
+        <a href="{{ url_for('prestamos.nuevo') }}?cliente={{ cliente.id }}" class="btn btn-success"><i class="bi bi-plus-lg"></i> Nuevo Prestamo</a>
         {% endif %}
         <a href="{{ url_for('clientes.listar') }}" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Volver</a>
     </div>
@@ -18,7 +27,11 @@
     <div class="col-md-4">
         <div class="card">
             <div class="card-body text-center">
+                {% if cliente.foto %}
+                <img src="{{ cliente.foto }}" alt="{{ cliente.nombre_completo }}" style="width:80px;height:80px;border-radius:50%;object-fit:cover;border:3px solid #e2e8f0;">
+                {% else %}
                 <i class="bi bi-person-circle text-primary" style="font-size: 4rem;"></i>
+                {% endif %}
                 <h5 class="mt-2">{{ cliente.nombre_completo }}</h5>
                 <p class="text-muted">{{ cliente.codigo_cliente }}</p>
                 <hr>
@@ -26,26 +39,40 @@
                     <p class="mb-1"><strong>Documento:</strong> {{ cliente.tipo_documento }} {{ cliente.numero_documento }}</p>
                     <p class="mb-1"><strong>Celular:</strong> {{ cliente.celular or '-' }}</p>
                     <p class="mb-1"><strong>Email:</strong> {{ cliente.email or '-' }}</p>
-                    <p class="mb-1"><strong>Dirección:</strong> {{ cliente.direccion or '-' }}</p>
-                    <p class="mb-1"><strong>Ocupación:</strong> {{ cliente.ocupacion or '-' }}</p>
+                    <p class="mb-1"><strong>Direccion:</strong> {{ cliente.direccion or '-' }}</p>
+                    <p class="mb-1"><strong>Distrito:</strong> {{ cliente.distrito or '-' }}</p>
+                    <p class="mb-1"><strong>Ocupacion:</strong> {{ cliente.ocupacion or '-' }}</p>
                     <p class="mb-1"><strong>Ingresos:</strong> Bs {{ "{:,.2f}".format(cliente.ingresos_mensuales or 0) }}</p>
                     <p class="mb-1"><strong>Registro:</strong> {{ cliente.fecha_registro.strftime('%d/%m/%Y') }}</p>
+                    {% if cliente.latitud and cliente.longitud %}
+                    <p class="mb-1"><strong>GPS:</strong> {{ "%.6f"|format(cliente.latitud|float) }}, {{ "%.6f"|format(cliente.longitud|float) }}</p>
+                    {% endif %}
                 </div>
             </div>
         </div>
+
+        {% if cliente.latitud and cliente.longitud %}
+        <div class="card mt-3">
+            <div class="card-header"><i class="bi bi-geo-alt"></i> Ubicacion en Google Maps</div>
+            <div class="card-body p-2">
+                <div id="map-detail"></div>
+            </div>
+        </div>
+        {% endif %}
     </div>
     <div class="col-md-8">
         <div class="card">
-            <div class="card-header"><i class="bi bi-cash-stack"></i> Préstamos del Cliente</div>
+            <div class="card-header"><i class="bi bi-cash-stack"></i> Prestamos del Cliente</div>
             <div class="card-body p-0">
                 <div class="table-responsive">
                     <table class="table table-hover mb-0">
                         <thead>
                             <tr>
-                                <th>Código</th>
+                                <th>Codigo</th>
                                 <th>Monto Aprobado</th>
                                 <th>Saldo</th>
                                 <th>Plazo</th>
+                                <th>Garantia</th>
                                 <th>Cuota</th>
                                 <th>Estado</th>
                                 <th>Acciones</th>
@@ -58,12 +85,13 @@
                                 <td>Bs {{ "{:,.2f}".format(p.monto_aprobado or p.monto_solicitado) }}</td>
                                 <td>Bs {{ "{:,.2f}".format(p.saldo_pendiente or 0) }}</td>
                                 <td>{{ p.plazo_meses }} meses</td>
+                                <td><span class="badge bg-info">{{ p.tipo_garantia or 'personal' }}</span></td>
                                 <td>Bs {{ "{:,.2f}".format(p.monto_cuota or 0) }}</td>
                                 <td><span class="badge bg-{% if p.estado == 'activo' %}info{% elif p.estado == 'cerrado' %}success{% elif p.estado == 'pendiente' %}warning{% else %}secondary{% endif %}">{{ p.estado }}</span></td>
                                 <td><a href="{{ url_for('prestamos.detalle', id=p.id) }}" class="btn btn-sm btn-outline-info"><i class="bi bi-eye"></i></a></td>
                             </tr>
                             {% else %}
-                            <tr><td colspan="7" class="text-center text-muted py-3">El cliente no tiene préstamos</td></tr>
+                            <tr><td colspan="8" class="text-center text-muted py-3">El cliente no tiene prestamos</td></tr>
                             {% endfor %}
                         </tbody>
                     </table>
@@ -72,4 +100,58 @@
         </div>
     </div>
 </div>
+{% endblock %}
+{% block extra_scripts %}
+<script>
+function initDetailMap() {
+    var lat = {{ cliente.latitud or -17.7833 }};
+    var lng = {{ cliente.longitud or -63.1822 }};
+    var pos = { lat: parseFloat(lat), lng: parseFloat(lng) };
+
+    var map = new google.maps.Map(document.getElementById('map-detail'), {
+        center: pos,
+        zoom: 15,
+    });
+
+    var totalDeuda = 0;
+    {% for p in prestamos %}
+        {% if p.estado == 'activo' %}
+            totalDeuda += parseFloat('{{ p.saldo_pendiente or 0 }}');
+        {% endif %}
+    {% endfor %}
+
+    var content = '<div class="info-window-content">';
+    {% if cliente.foto %}
+    content += '<img src="{{ cliente.foto }}" alt="{{ cliente.nombre_completo }}">';
+    {% else %}
+    content += '<div style="width:60px;height:60px;border-radius:50%;background:#e2e8f0;margin:0 auto 4px;display:flex;align-items:center;justify-content:center;"><i class="bi bi-person" style="font-size:28px;color:#94a3b8;"></i></div>';
+    {% endif %}
+    content += '<h6>{{ cliente.nombre_completo }}</h6>';
+    content += '<p>Deuda: Bs ' + totalDeuda.toFixed(2) + '</p>';
+    content += '</div>';
+
+    var marker = new google.maps.Marker({
+        position: pos,
+        map: map,
+        title: '{{ cliente.nombre_completo }}',
+    });
+
+    var infoWindow = new google.maps.InfoWindow({
+        content: content,
+    });
+
+    marker.addListener('mouseover', function() {
+        infoWindow.open(map, marker);
+    });
+
+    marker.addListener('mouseout', function() {
+        setTimeout(function() { infoWindow.close(); }, 2000);
+    });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    if (document.getElementById('map-detail') && typeof google !== 'undefined') initDetailMap();
+});
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZw4hvVYl_f4Nlxldv0_tW5FRVdjo8BOc&callback=initDetailMap" async defer></script>
 {% endblock %}

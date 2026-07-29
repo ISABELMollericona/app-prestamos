@@ -32,6 +32,10 @@
                     {% for e in form.tasa_interes_id.errors %}<div class="invalid-feedback">{{ e }}</div>{% endfor %}
                 </div>
                 <div class="col-md-4">
+                    {{ form.tipo_garantia.label(class="form-label") }}
+                    {{ form.tipo_garantia(class="form-select") }}
+                </div>
+                <div class="col-md-4">
                     {{ form.metodo_amortizacion.label(class="form-label") }}
                     {{ form.metodo_amortizacion(class="form-select") }}
                 </div>

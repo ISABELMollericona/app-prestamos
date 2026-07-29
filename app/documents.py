@@ -42,11 +42,11 @@ def generar_cronograma_pagos(prestamo, amortizaciones):
         ['Documento:', f"{prestamo.cliente.tipo_documento}: {prestamo.cliente.numero_documento}"],
         ['Código Préstamo:', prestamo.codigo_prestamo],
         ['Monto Aprobado:', f"Bs {float(prestamo.monto_aprobado):,.2f}"],
-        ['Tasa:', f"{float(prestamo.tasa_interes_valor or 0) * 100:.2f}% anual"],
+        ['Tasa:', f"{float(prestamo.tasa_interes_valor or 0) * 100:.2f}% {prestamo.tipo_tasa or 'mensual'}"],
         ['Plazo:', f"{prestamo.plazo_meses} meses"],
         ['Cuota:', f"Bs {float(prestamo.monto_cuota or 0):,.2f}"],
         ['Frecuencia:', prestamo.frecuencia_pago.capitalize()],
-        ['Método:', 'Francés (Cuota Fija)' if prestamo.metodo_amortizacion == 'frances' else 'Alemán'],
+        ['Método:', 'Francés (Cuota Fija)' if prestamo.metodo_amortizacion == 'frances' else 'Americano (Solo Intereses)' if prestamo.metodo_amortizacion == 'americano' else 'Alemán (Amortización Constante)'],
         ['Fecha Desembolso:', prestamo.fecha_desembolso.strftime('%d/%m/%Y') if prestamo.fecha_desembolso else '-'],
     ]
 
@@ -95,6 +95,110 @@ def generar_cronograma_pagos(prestamo, amortizaciones):
     elements.append(Spacer(1, 10*mm))
     elements.append(Paragraph(f'Generado el: {datetime.now().strftime("%d/%m/%Y %H:%M")}', subtitle_style))
 
+    doc.build(elements)
+    buffer.seek(0)
+    return buffer
+
+
+def _build_contrato_base(doc, prestamo, titulo, tipo_doc):
+    """Construye las primeras secciones comunes de un contrato de prestamo"""
+    styles = getSampleStyleSheet()
+    title_style = ParagraphStyle('Titulo', parent=styles['Title'],
+                                  fontSize=14, spaceAfter=6,
+                                  textColor=HexColor('#1a237e'))
+    normal_style = ParagraphStyle('NormalDoc', parent=styles['Normal'],
+                                   fontSize=10, spaceAfter=4, leading=14)
+    bold_style = ParagraphStyle('BoldDoc', parent=normal_style,
+                                 fontName='Helvetica-Bold')
+
+    elements = []
+    elements.append(Paragraph('MICREDIT - Microfinanzas', title_style))
+    elements.append(Paragraph(titulo, ParagraphStyle(
+        'Subt', parent=styles['Normal'], fontSize=12,
+        textColor=HexColor('#1a237e'), spaceAfter=12)))
+    elements.append(Spacer(1, 8*mm))
+
+    c = prestamo.cliente
+    fecha_actual = datetime.now().strftime('%d/%m/%Y')
+    monto_str = f"Bs {float(prestamo.monto_aprobado or prestamo.monto_solicitado):,.2f}"
+    tasa_str = f"{float(prestamo.tasa_interes_valor or 0) * 100:.2f}% {prestamo.tipo_tasa or 'mensual'}"
+
+    clausulas = [
+        f"<b>PRIMERO.- (PARTES INTERVINIENTES).-</b> El presente {tipo_doc} se celebra entre <b>{c.nombre_completo}</b>, identificado con {c.tipo_documento} Nro. {c.numero_documento}, con domicilio en {c.direccion or 'la ciudad'}, en adelante EL DEUDOR; y MICREDIT S.R.L., en adelante EL ACREEDOR.",
+        f"<b>SEGUNDO.- (OBJETO).-</b> EL ACREEDOR otorga un prestamo a EL DEUDOR por la suma de {monto_str}, que el deudor se obliga a devolver en {prestamo.plazo_meses} meses, con una tasa de interes de {tasa_str}, bajo el sistema de amortizacion {prestamo.metodo_amortizacion}, conforme al cronograma de pagos adjunto.",
+        f"<b>TERCERO.- (FORMA DE PAGO).-</b> EL DEUDOR se obliga a pagar cuotas {prestamo.frecuencia_pago} por el monto de Bs {float(prestamo.monto_cuota or 0):,.2f}, los dias de vencimiento establecidos en el cronograma.",
+        f"<b>CUARTO.- (INTERESES Y MORA).-</b> En caso de mora, EL DEUDOR pagara un interes moratorio del 0.5% diario sobre el monto de la cuota impaga.",
+        f"<b>QUINTO.- (DOMICILIO).-</b> Las partes senalan como sus domicilios los indicados en la clausula primera, donde se realizaran las notificaciones.",
+        f"<b>SEXTO.- (JURISDICCION).-</b> Las partes se someten a la jurisdiccion de los tribunales de la ciudad.",
+    ]
+
+    for clausula in clausulas:
+        elements.append(Paragraph(clausula, normal_style))
+        elements.append(Spacer(1, 3*mm))
+
+    elements.append(Spacer(1, 10*mm))
+    elements.append(Paragraph(f'Firmado en la ciudad, a los {datetime.now().day} dias del mes de {datetime.now().strftime("%B")} de {datetime.now().year}.', normal_style))
+    elements.append(Spacer(1, 8*mm))
+
+    firma_data = [
+        ['____________________________', '____________________________'],
+        [c.nombre_completo, 'MICREDIT S.R.L.'],
+        ['DEUDOR', 'ACREEDOR'],
+    ]
+    firma_table = Table(firma_data, colWidths=[220, 220])
+    firma_table.setStyle(TableStyle([
+        ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
+        ('FONTSIZE', (0, 0), (-1, -1), 9),
+        ('TOPPADDING', (0, 0), (-1, -1), 4),
+    ]))
+    elements.append(firma_table)
+
+    return elements
+
+
+def generar_contrato_prenda_venta(prestamo):
+    """Contrato de Venta con Pacto de Rescate - Garantia Prendaria"""
+    buffer = BytesIO()
+    doc = SimpleDocTemplate(buffer, pagesize=A4,
+                             topMargin=20*mm, bottomMargin=15*mm,
+                             leftMargin=20*mm, rightMargin=20*mm)
+    elements = _build_contrato_base(
+        doc, prestamo,
+        'CONTRATO DE VENTA CON PACTO DE RESCATE',
+        'Contrato de Venta con Pacto de Rescate'
+    )
+    doc.build(elements)
+    buffer.seek(0)
+    return buffer
+
+
+def generar_contrato_prenda_dacion(prestamo):
+    """Dacion en Pago - Garantia Prendaria"""
+    buffer = BytesIO()
+    doc = SimpleDocTemplate(buffer, pagesize=A4,
+                             topMargin=20*mm, bottomMargin=15*mm,
+                             leftMargin=20*mm, rightMargin=20*mm)
+    elements = _build_contrato_base(
+        doc, prestamo,
+        'CONTRATO DE DACION EN PAGO',
+        'Contrato de Dacion en Pago'
+    )
+    doc.build(elements)
+    buffer.seek(0)
+    return buffer
+
+
+def generar_contrato_prenda_garantia(prestamo):
+    """Prestamo con Garantia Prendaria"""
+    buffer = BytesIO()
+    doc = SimpleDocTemplate(buffer, pagesize=A4,
+                             topMargin=20*mm, bottomMargin=15*mm,
+                             leftMargin=20*mm, rightMargin=20*mm)
+    elements = _build_contrato_base(
+        doc, prestamo,
+        'CONTRATO DE PRESTAMO CON GARANTIA PRENDARIA',
+        'Contrato de Prestamo con Garantia Prendaria'
+    )
     doc.build(elements)
     buffer.seek(0)
     return buffer

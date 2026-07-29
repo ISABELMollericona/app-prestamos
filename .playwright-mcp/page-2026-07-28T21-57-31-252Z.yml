@@ -1,0 +1,179 @@
+- generic [active] [ref=f9e1]:
+  - generic [ref=f9e2]:
+    - link [ref=f9e4] [cursor=pointer]:
+      - /url: /
+      - heading " MiCredit" [level=5] [ref=f9e5]:
+        - generic [ref=f9e6]: 
+        - text: MiCredit
+      - text: Sistema de Microfinanzas
+    - generic [ref=f9e7]: Principal
+    - list [ref=f9e8]:
+      - listitem [ref=f9e9]:
+        - link " Dashboard" [ref=f9e10] [cursor=pointer]:
+          - /url: /
+          - generic [ref=f9e11]: 
+          - text: Dashboard
+    - generic [ref=f9e12]: Gestión
+    - list [ref=f9e13]:
+      - listitem [ref=f9e14]:
+        - link " Clientes" [ref=f9e15] [cursor=pointer]:
+          - /url: /clientes/
+          - generic [ref=f9e16]: 
+          - text: Clientes
+      - listitem [ref=f9e17]:
+        - link " Préstamos" [ref=f9e18] [cursor=pointer]:
+          - /url: /prestamos/
+          - generic [ref=f9e19]: 
+          - text: Préstamos
+      - listitem [ref=f9e20]:
+        - link " Pagos" [ref=f9e21] [cursor=pointer]:
+          - /url: /pagos/
+          - generic [ref=f9e22]: 
+          - text: Pagos
+    - generic [ref=f9e23]: Herramientas
+    - list [ref=f9e24]:
+      - listitem [ref=f9e25]:
+        - link " Reportes" [ref=f9e26] [cursor=pointer]:
+          - /url: /reportes/
+          - generic [ref=f9e27]: 
+          - text: Reportes
+      - listitem [ref=f9e28]:
+        - link " Simulador" [ref=f9e29] [cursor=pointer]:
+          - /url: /prestamos/proyectar
+          - generic [ref=f9e30]: 
+          - text: Simulador
+    - generic [ref=f9e31]: Administración
+    - list [ref=f9e32]:
+      - listitem [ref=f9e33]:
+        - link " Usuarios" [ref=f9e34] [cursor=pointer]:
+          - /url: /usuarios/
+          - generic [ref=f9e35]: 
+          - text: Usuarios
+  - generic [ref=f9e36]:
+    - navigation [ref=f9e37]:
+      - generic [ref=f9e39]:
+        - generic [ref=f9e40]: 
+        - text: 28/07/2026
+      - list [ref=f9e41]:
+        - listitem [ref=f9e42]:
+          - link "AD Admin Sistema administrador" [ref=f9e43] [cursor=pointer]:
+            - /url: "#"
+            - generic [ref=f9e44]: AD
+            - generic [ref=f9e45]: Admin Sistema
+            - generic [ref=f9e46]: administrador
+          - text:  
+    - generic [ref=f9e47]:
+      - heading " Nuevo Cliente" [level=4] [ref=f9e48]:
+        - generic [ref=f9e49]: 
+        - text: Nuevo Cliente
+      - link " Volver" [ref=f9e50] [cursor=pointer]:
+        - /url: /clientes/
+        - generic [ref=f9e51]: 
+        - text: Volver
+    - generic [ref=f9e54]:
+      - generic [ref=f9e55]:
+        - generic [ref=f9e56]:
+          - generic [ref=f9e57]: Nombre Completo
+          - textbox "Nombre Completo" [ref=f9e58]
+        - generic [ref=f9e59]:
+          - generic [ref=f9e60]: Tipo Documento
+          - combobox "Tipo Documento" [ref=f9e61]:
+            - option "DNI" [selected]
+            - option "Carné de Extranjería"
+            - option "RUC"
+        - generic [ref=f9e62]:
+          - generic [ref=f9e63]: N° Documento
+          - textbox "N° Documento" [ref=f9e64]
+        - generic [ref=f9e65]:
+          - generic [ref=f9e66]: Fecha de Nacimiento
+          - textbox "Fecha de Nacimiento" [ref=f9e67]
+        - generic [ref=f9e68]:
+          - generic [ref=f9e69]: Género
+          - combobox "Género" [ref=f9e70]:
+            - option "Seleccione..." [selected]
+            - option "Masculino"
+            - option "Femenino"
+        - generic [ref=f9e71]:
+          - generic [ref=f9e72]: Estado Civil
+          - combobox "Estado Civil" [ref=f9e73]:
+            - option "Seleccione..." [selected]
+            - option "Soltero"
+            - option "Casado"
+            - option "Divorciado"
+            - option "Viudo"
+        - generic [ref=f9e74]:
+          - generic [ref=f9e75]: Ocupación
+          - textbox "Ocupación" [ref=f9e76]
+        - generic [ref=f9e77]:
+          - generic [ref=f9e78]: Ingresos Mensuales (Bs)
+          - spinbutton "Ingresos Mensuales (Bs)" [ref=f9e79]
+      - separator [ref=f9e80]
+      - heading "Contacto" [level=6] [ref=f9e81]
+      - generic [ref=f9e82]:
+        - generic [ref=f9e83]:
+          - generic [ref=f9e84]: Teléfono
+          - textbox "Teléfono" [ref=f9e85]
+        - generic [ref=f9e86]:
+          - generic [ref=f9e87]: Celular
+          - textbox "Celular" [ref=f9e88]
+        - generic [ref=f9e89]:
+          - generic [ref=f9e90]: Email
+          - textbox "Email" [ref=f9e91]
+      - separator [ref=f9e92]
+      - heading "Direccion y Ubicacion (Google Maps)" [level=6] [ref=f9e93]
+      - generic [ref=f9e94]:
+        - generic [ref=f9e95]:
+          - generic [ref=f9e96]: Dirección
+          - textbox "Dirección" [ref=f9e97]
+        - generic [ref=f9e98]:
+          - generic [ref=f9e99]: Buscar direccion en Google Maps
+          - textbox "Escriba la direccion..." [ref=f9e100]
+      - generic [ref=f9e101]:
+        - generic [ref=f9e102]:
+          - generic [ref=f9e103]: Distrito
+          - textbox "Distrito" [ref=f9e104]
+        - generic [ref=f9e105]:
+          - generic [ref=f9e106]: Provincia
+          - textbox "Provincia" [ref=f9e107]
+        - generic [ref=f9e108]:
+          - generic [ref=f9e109]: Departamento
+          - textbox "Departamento" [ref=f9e110]
+      - generic [ref=f9e111]:
+        - generic [ref=f9e112]:
+          - generic [ref=f9e113]: Latitud (Google Maps)
+          - spinbutton "Latitud (Google Maps)" [ref=f9e114]
+        - generic [ref=f9e115]:
+          - generic [ref=f9e116]: Longitud (Google Maps)
+          - spinbutton "Longitud (Google Maps)" [ref=f9e117]
+      - generic [ref=f9e121]:
+        - region "Mapa" [ref=f9e122]
+        - iframe [ref=f9e148]:
+          
+      - separator [ref=f9e149]
+      - heading "Foto del Cliente" [level=6] [ref=f9e150]
+      - generic [ref=f9e151]:
+        - generic [ref=f9e152]:
+          - generic [ref=f9e153]: URL Foto del Cliente
+          - textbox "URL Foto del Cliente" [ref=f9e154]:
+            - /placeholder: https://ejemplo.com/foto.jpg
+        - generic [ref=f9e155]: Vista previa
+      - separator [ref=f9e158]
+      - heading "Referencia" [level=6] [ref=f9e159]
+      - generic [ref=f9e160]:
+        - generic [ref=f9e161]:
+          - generic [ref=f9e162]: Nombre Referencia
+          - textbox "Nombre Referencia" [ref=f9e163]
+        - generic [ref=f9e164]:
+          - generic [ref=f9e165]: Teléfono Referencia
+          - textbox "Teléfono Referencia" [ref=f9e166]
+      - separator [ref=f9e167]
+      - generic [ref=f9e169]:
+        - generic [ref=f9e170]: Observaciones
+        - textbox "Observaciones" [ref=f9e171]
+      - generic [ref=f9e172]:
+        - button " Guardar" [ref=f9e173] [cursor=pointer]:
+          - generic [ref=f9e174]: 
+          - text: Guardar
+        - link "Cancelar" [ref=f9e175] [cursor=pointer]:
+          - /url: /clientes/
+    - contentinfo [ref=f9e176]: © 2026 MiCredit — Sistema de Gestión de Microcréditos v1.0

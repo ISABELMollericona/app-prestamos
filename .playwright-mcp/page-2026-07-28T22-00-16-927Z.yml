@@ -1,0 +1,110 @@
+- generic [active] [ref=f17e1]:
+  - generic [ref=f17e2]:
+    - link [ref=f17e4] [cursor=pointer]:
+      - /url: /
+      - heading " MiCredit" [level=5] [ref=f17e5]:
+        - generic [ref=f17e6]: 
+        - text: MiCredit
+      - text: Sistema de Microfinanzas
+    - generic [ref=f17e7]: Principal
+    - list [ref=f17e8]:
+      - listitem [ref=f17e9]:
+        - link " Dashboard" [ref=f17e10] [cursor=pointer]:
+          - /url: /
+          - generic [ref=f17e11]: 
+          - text: Dashboard
+    - generic [ref=f17e12]: Gestión
+    - list [ref=f17e13]:
+      - listitem [ref=f17e14]:
+        - link " Clientes" [ref=f17e15] [cursor=pointer]:
+          - /url: /clientes/
+          - generic [ref=f17e16]: 
+          - text: Clientes
+      - listitem [ref=f17e17]:
+        - link " Préstamos" [ref=f17e18] [cursor=pointer]:
+          - /url: /prestamos/
+          - generic [ref=f17e19]: 
+          - text: Préstamos
+      - listitem [ref=f17e20]:
+        - link " Pagos" [ref=f17e21] [cursor=pointer]:
+          - /url: /pagos/
+          - generic [ref=f17e22]: 
+          - text: Pagos
+    - generic [ref=f17e23]: Herramientas
+    - list [ref=f17e24]:
+      - listitem [ref=f17e25]:
+        - link " Reportes" [ref=f17e26] [cursor=pointer]:
+          - /url: /reportes/
+          - generic [ref=f17e27]: 
+          - text: Reportes
+      - listitem [ref=f17e28]:
+        - link " Simulador" [ref=f17e29] [cursor=pointer]:
+          - /url: /prestamos/proyectar
+          - generic [ref=f17e30]: 
+          - text: Simulador
+    - generic [ref=f17e31]: Administración
+    - list [ref=f17e32]:
+      - listitem [ref=f17e33]:
+        - link " Usuarios" [ref=f17e34] [cursor=pointer]:
+          - /url: /usuarios/
+          - generic [ref=f17e35]: 
+          - text: Usuarios
+  - generic [ref=f17e36]:
+    - navigation [ref=f17e37]:
+      - generic [ref=f17e39]:
+        - generic [ref=f17e40]: 
+        - text: 28/07/2026
+      - list [ref=f17e41]:
+        - listitem [ref=f17e42]:
+          - link "AD Admin Sistema administrador" [ref=f17e43] [cursor=pointer]:
+            - /url: "#"
+            - generic [ref=f17e44]: AD
+            - generic [ref=f17e45]: Admin Sistema
+            - generic [ref=f17e46]: administrador
+          - text:  
+    - generic [ref=f17e47]:
+      - heading " Evaluar Préstamo PRE-0001" [level=4] [ref=f17e48]:
+        - generic [ref=f17e49]: 
+        - text: Evaluar Préstamo PRE-0001
+      - link " Volver" [ref=f17e50] [cursor=pointer]:
+        - /url: /prestamos/1
+        - generic [ref=f17e51]: 
+        - text: Volver
+    - generic [ref=f17e52]:
+      - generic [ref=f17e54]:
+        - generic [ref=f17e55]: Datos del Préstamo
+        - table [ref=f17e57]:
+          - rowgroup [ref=f17e58]:
+            - row [ref=f17e59]:
+              - rowheader "Cliente:" [ref=f17e60]
+              - cell "Juan Perez" [ref=f17e61]
+            - row [ref=f17e62]:
+              - rowheader "Monto Solicitado:" [ref=f17e63]
+              - cell "Bs 5,000.00" [ref=f17e64]
+            - row [ref=f17e65]:
+              - rowheader "Plazo:" [ref=f17e66]
+              - cell "12 meses" [ref=f17e67]
+            - row [ref=f17e68]:
+              - rowheader "Tasa:" [ref=f17e69]
+              - cell "3.00%" [ref=f17e70]
+            - row [ref=f17e71]:
+              - rowheader "Método:" [ref=f17e72]
+              - cell "Americano" [ref=f17e73]
+      - generic [ref=f17e75]:
+        - generic [ref=f17e76]: Decisión
+        - generic [ref=f17e78]:
+          - generic [ref=f17e79]:
+            - generic [ref=f17e80]: Monto Aprobado (Bs)
+            - spinbutton "Monto Aprobado (Bs)" [ref=f17e81]: "5000.00"
+          - generic [ref=f17e82]:
+            - button " Aprobar" [ref=f17e84] [cursor=pointer]:
+              - generic [ref=f17e85]: 
+              - text: Aprobar
+            - button " Rechazar" [ref=f17e87] [cursor=pointer]:
+              - generic [ref=f17e88]: 
+              - text: Rechazar
+          - generic [ref=f17e89]:
+            - generic [ref=f17e90]: Motivo de Rechazo
+            - textbox "Motivo de Rechazo" [ref=f17e91]:
+              - /placeholder: Obligatorio si rechaza
+    - contentinfo [ref=f17e92]: © 2026 MiCredit — Sistema de Gestión de Microcréditos v1.0

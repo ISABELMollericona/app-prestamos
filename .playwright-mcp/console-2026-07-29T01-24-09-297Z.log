@@ -1,0 +1,2 @@
+[   17221ms] [ERROR] Failed to load resource: the server responded with a status of 500 (INTERNAL SERVER ERROR) @ http://127.0.0.1:5000/prestamos/1/amortizar:0
+[   17462ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_RESET @ http://127.0.0.1:5000/prestamos/1/amortizar?__debugger__=yes&cmd=resource&f=debugger.js:0

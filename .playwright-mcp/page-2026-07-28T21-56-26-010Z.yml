@@ -1,0 +1,89 @@
+- generic [active] [ref=f4e1]:
+  - generic [ref=f4e2]:
+    - link [ref=f4e4] [cursor=pointer]:
+      - /url: /
+      - heading " MiCredit" [level=5] [ref=f4e5]:
+        - generic [ref=f4e6]: 
+        - text: MiCredit
+      - text: Sistema de Microfinanzas
+    - generic [ref=f4e7]: Principal
+    - list [ref=f4e8]:
+      - listitem [ref=f4e9]:
+        - link " Dashboard" [ref=f4e10] [cursor=pointer]:
+          - /url: /
+          - generic [ref=f4e11]: 
+          - text: Dashboard
+    - generic [ref=f4e12]: Gestión
+    - list [ref=f4e13]:
+      - listitem [ref=f4e14]:
+        - link " Clientes" [ref=f4e15] [cursor=pointer]:
+          - /url: /clientes/
+          - generic [ref=f4e16]: 
+          - text: Clientes
+      - listitem [ref=f4e17]:
+        - link " Préstamos" [ref=f4e18] [cursor=pointer]:
+          - /url: /prestamos/
+          - generic [ref=f4e19]: 
+          - text: Préstamos
+      - listitem [ref=f4e20]:
+        - link " Pagos" [ref=f4e21] [cursor=pointer]:
+          - /url: /pagos/
+          - generic [ref=f4e22]: 
+          - text: Pagos
+    - generic [ref=f4e23]: Herramientas
+    - list [ref=f4e24]:
+      - listitem [ref=f4e25]:
+        - link " Reportes" [ref=f4e26] [cursor=pointer]:
+          - /url: /reportes/
+          - generic [ref=f4e27]: 
+          - text: Reportes
+      - listitem [ref=f4e28]:
+        - link " Simulador" [ref=f4e29] [cursor=pointer]:
+          - /url: /prestamos/proyectar
+          - generic [ref=f4e30]: 
+          - text: Simulador
+    - generic [ref=f4e31]: Administración
+    - list [ref=f4e32]:
+      - listitem [ref=f4e33]:
+        - link " Usuarios" [ref=f4e34] [cursor=pointer]:
+          - /url: /usuarios/
+          - generic [ref=f4e35]: 
+          - text: Usuarios
+  - generic [ref=f4e36]:
+    - navigation [ref=f4e37]:
+      - generic [ref=f4e39]:
+        - generic [ref=f4e40]: 
+        - text: 28/07/2026
+      - list [ref=f4e41]:
+        - listitem [ref=f4e42]:
+          - link "AD Admin Sistema administrador" [ref=f4e43] [cursor=pointer]:
+            - /url: "#"
+            - generic [ref=f4e44]: AD
+            - generic [ref=f4e45]: Admin Sistema
+            - generic [ref=f4e46]: administrador
+          - text:  
+    - generic [ref=f4e47]:
+      - heading " Clientes" [level=4] [ref=f4e48]:
+        - generic [ref=f4e49]: 
+        - text: Clientes
+      - link " Nuevo Cliente" [ref=f4e50] [cursor=pointer]:
+        - /url: /clientes/nuevo
+        - generic [ref=f4e51]: 
+        - text: Nuevo Cliente
+    - generic [ref=f4e53]:
+      - generic [ref=f4e56]:
+        - textbox "Buscar por nombre, documento o celular..." [ref=f4e57]
+        - button "" [ref=f4e58] [cursor=pointer]
+      - table [ref=f4e61]:
+        - rowgroup [ref=f4e62]:
+          - row [ref=f4e63]:
+            - columnheader "Código" [ref=f4e64]
+            - columnheader "Nombre" [ref=f4e65]
+            - columnheader "Documento" [ref=f4e66]
+            - columnheader "Celular" [ref=f4e67]
+            - columnheader "Préstamos" [ref=f4e68]
+            - columnheader "Acciones" [ref=f4e69]
+        - rowgroup [ref=f4e70]:
+          - row [ref=f4e71]:
+            - cell "No se encontraron clientes" [ref=f4e72]
+    - contentinfo [ref=f4e73]: © 2026 MiCredit — Sistema de Gestión de Microcréditos v1.0

@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block title %}Amortizar - {{ prestamo.codigo_prestamo }}{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h4 class="mb-0"><i class="bi bi-cash"></i> Amortizar Prestamo: {{ prestamo.codigo_prestamo }}</h4>
+    <a href="{{ url_for('prestamos.detalle', id=prestamo.id) }}" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Volver</a>
+</div>
+
+<div class="row g-3">
+    <div class="col-md-5">
+        <div class="card">
+            <div class="card-header"><i class="bi bi-info-circle"></i> Informacion del Prestamo</div>
+            <div class="card-body">
+                <table class="table table-sm">
+                    <tr><th>Cliente:</th><td>{{ prestamo.cliente.nombre_completo }}</td></tr>
+                    <tr><th>Saldo Pendiente:</th><td><strong>Bs {{ "{:,.2f}".format(cuotas[0].saldo_inicial or 0) }}</strong></td></tr>
+                    <tr><th>Cuotas Pendientes:</th><td>{{ cuotas|length }}</td></tr>
+                    <tr><th>Metodo:</th><td>{{ prestamo.metodo_amortizacion.capitalize() }}</td></tr>
+                    <tr><th>Cuota Actual:</th><td>Bs {{ "{:,.2f}".format(prestamo.monto_cuota or 0) }}</td></tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="card mt-3">
+            <div class="card-header"><i class="bi bi-cash-stack"></i> Registrar Amortizacion</div>
+            <div class="card-body">
+                <form method="POST">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                    <div class="mb-3">
+                        <label class="form-label">Monto a Amortizar (Bs)</label>
+                        <input type="number" name="monto_amortizar" class="form-control" step="0.01" min="0.01" max="{{ cuotas[0].saldo_inicial }}" required placeholder="0.00">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Saldo actual: <strong>Bs {{ "{:,.2f}".format(cuotas[0].saldo_inicial or 0) }}</strong></label>
+                    </div>
+                    <button type="submit" class="btn btn-warning" onclick="return confirm('Se recalculara el plan de pagos. Confirmar?')">
+                        <i class="bi bi-arrow-repeat"></i> Aplicar Amortizacion y Recalcular
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-7">
+        <div class="card">
+            <div class="card-header"><i class="bi bi-table"></i> Cuotas Pendientes</div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-sm table-hover mb-0">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Vencimiento</th>
+                                <th>Saldo Inicial</th>
+                                <th>Cuota</th>
+                                <th>Interes</th>
+                                <th>Amortizacion</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for c in cuotas %}
+                            <tr>
+                                <td>{{ c.numero_cuota }}</td>
+                                <td>{{ c.fecha_vencimiento.strftime('%d/%m/%Y') }}</td>
+                                <td>Bs {{ "{:,.2f}".format(c.saldo_inicial or 0) }}</td>
+                                <td>Bs {{ "{:,.2f}".format(c.monto_cuota or 0) }}</td>
+                                <td>Bs {{ "{:,.2f}".format(c.interes or 0) }}</td>
+                                <td>Bs {{ "{:,.2f}".format(c.amortizacion or 0) }}</td>
+                                <td>Bs {{ "{:,.2f}".format(c.total_cuota or 0) }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

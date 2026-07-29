@@ -67,6 +67,9 @@ class Cliente(db.Model):
     ingresos_mensuales = db.Column(db.Numeric(12, 2), default=0)
     referencia_nombre = db.Column(db.String(150))
     referencia_telefono = db.Column(db.String(20))
+    latitud = db.Column(db.Numeric(10, 7), nullable=True)
+    longitud = db.Column(db.Numeric(10, 7), nullable=True)
+    foto = db.Column(db.Text, nullable=True)
     observaciones = db.Column(db.Text)
     activo = db.Column(db.Boolean, default=True)
     fecha_registro = db.Column(db.DateTime, default=datetime.utcnow)
@@ -107,6 +110,7 @@ class Prestamo(db.Model):
     tasa_interes_valor = db.Column(db.Numeric(5, 4))
     tipo_tasa = db.Column(db.String(20))
     plazo_meses = db.Column(db.Integer, nullable=False)
+    tipo_garantia = db.Column(db.String(30), default='personal')
     metodo_amortizacion = db.Column(db.String(30), default='frances')
     frecuencia_pago = db.Column(db.String(20), default='mensual')
     monto_cuota = db.Column(db.Numeric(12, 2))
@@ -153,7 +157,6 @@ class Prestamo(db.Model):
 
 class Amortizacion(db.Model):
     __tablename__ = 'amortizacion'
-    __table_args__ = {'implicit_returning': False}
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     prestamo_id = db.Column(db.Integer, db.ForeignKey('prestamos.id'), nullable=False)
     numero_cuota = db.Column(db.Integer, nullable=False)

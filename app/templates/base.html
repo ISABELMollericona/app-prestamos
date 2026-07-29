@@ -190,6 +190,11 @@
                 </a>
             </li>
             <li>
+                <a class="nav-link {% if request.endpoint == 'clientes.mapa' %}active{% endif %}" href="{{ url_for('clientes.mapa') }}">
+                    <i class="bi bi-geo-alt"></i> Mapa Clientes
+                </a>
+            </li>
+            <li>
                 <a class="nav-link {% if request.endpoint and 'prestamos' in request.endpoint %}active{% endif %}" href="{{ url_for('prestamos.listar') }}">
                     <i class="bi bi-cash-stack"></i> Préstamos
                 </a>

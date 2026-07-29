@@ -1,0 +1,116 @@
+- generic [active] [ref=f15e1]:
+  - generic [ref=f15e2]:
+    - link [ref=f15e4] [cursor=pointer]:
+      - /url: /
+      - heading " MiCredit" [level=5] [ref=f15e5]:
+        - generic [ref=f15e6]: 
+        - text: MiCredit
+      - text: Sistema de Microfinanzas
+    - generic [ref=f15e7]: Principal
+    - list [ref=f15e8]:
+      - listitem [ref=f15e9]:
+        - link " Dashboard" [ref=f15e10] [cursor=pointer]:
+          - /url: /
+          - generic [ref=f15e11]: 
+          - text: Dashboard
+    - generic [ref=f15e12]: Gestión
+    - list [ref=f15e13]:
+      - listitem [ref=f15e14]:
+        - link " Clientes" [ref=f15e15] [cursor=pointer]:
+          - /url: /clientes/
+          - generic [ref=f15e16]: 
+          - text: Clientes
+      - listitem [ref=f15e17]:
+        - link " Préstamos" [ref=f15e18] [cursor=pointer]:
+          - /url: /prestamos/
+          - generic [ref=f15e19]: 
+          - text: Préstamos
+      - listitem [ref=f15e20]:
+        - link " Pagos" [ref=f15e21] [cursor=pointer]:
+          - /url: /pagos/
+          - generic [ref=f15e22]: 
+          - text: Pagos
+    - generic [ref=f15e23]: Herramientas
+    - list [ref=f15e24]:
+      - listitem [ref=f15e25]:
+        - link " Reportes" [ref=f15e26] [cursor=pointer]:
+          - /url: /reportes/
+          - generic [ref=f15e27]: 
+          - text: Reportes
+      - listitem [ref=f15e28]:
+        - link " Simulador" [ref=f15e29] [cursor=pointer]:
+          - /url: /prestamos/proyectar
+          - generic [ref=f15e30]: 
+          - text: Simulador
+    - generic [ref=f15e31]: Administración
+    - list [ref=f15e32]:
+      - listitem [ref=f15e33]:
+        - link " Usuarios" [ref=f15e34] [cursor=pointer]:
+          - /url: /usuarios/
+          - generic [ref=f15e35]: 
+          - text: Usuarios
+  - generic [ref=f15e36]:
+    - navigation [ref=f15e37]:
+      - generic [ref=f15e39]:
+        - generic [ref=f15e40]: 
+        - text: 28/07/2026
+      - list [ref=f15e41]:
+        - listitem [ref=f15e42]:
+          - link "AD Admin Sistema administrador" [ref=f15e43] [cursor=pointer]:
+            - /url: "#"
+            - generic [ref=f15e44]: AD
+            - generic [ref=f15e45]: Admin Sistema
+            - generic [ref=f15e46]: administrador
+          - text:  
+    - generic [ref=f15e47]:
+      - heading " Nueva Solicitud" [level=4] [ref=f15e48]:
+        - generic [ref=f15e49]: 
+        - text: Nueva Solicitud
+      - link " Volver" [ref=f15e50] [cursor=pointer]:
+        - /url: /prestamos/
+        - generic [ref=f15e51]: 
+        - text: Volver
+    - generic [ref=f15e54]:
+      - generic [ref=f15e55]:
+        - generic [ref=f15e56]:
+          - generic [ref=f15e57]: Cliente
+          - combobox "Cliente" [ref=f15e58]:
+            - option "Juan Perez (12345678)" [selected]
+        - generic [ref=f15e59]:
+          - generic [ref=f15e60]: Monto Solicitado (Bs)
+          - spinbutton "Monto Solicitado (Bs)" [ref=f15e61]
+        - generic [ref=f15e62]:
+          - generic [ref=f15e63]: Plazo (Meses)
+          - spinbutton "Plazo (Meses)" [ref=f15e64]
+        - generic [ref=f15e65]:
+          - generic [ref=f15e66]: Tasa de Interés
+          - combobox "Tasa de Interés" [ref=f15e67]:
+            - option "Tasa Estandar (3.0% mensual)" [selected]
+        - generic [ref=f15e68]:
+          - generic [ref=f15e69]: Tipo de Garantía
+          - combobox "Tipo de Garantía" [ref=f15e70]:
+            - option "Personal" [selected]
+            - option "Prendaria"
+            - option "Hipoteca"
+        - generic [ref=f15e71]:
+          - generic [ref=f15e72]: Método Amortización
+          - combobox "Método Amortización" [ref=f15e73]:
+            - option "Francés (Cuota Fija)" [selected]
+            - option "Alemán (Amortización Constante)"
+            - option "Americano (Solo Intereses)"
+        - generic [ref=f15e74]:
+          - generic [ref=f15e75]: Frecuencia de Pago
+          - combobox "Frecuencia de Pago" [ref=f15e76]:
+            - option "Mensual" [selected]
+            - option "Quincenal"
+            - option "Semanal"
+        - generic [ref=f15e77]:
+          - generic [ref=f15e78]: Observaciones
+          - textbox "Observaciones" [ref=f15e79]
+      - generic [ref=f15e80]:
+        - button " Solicitar Préstamo" [ref=f15e81] [cursor=pointer]:
+          - generic [ref=f15e82]: 
+          - text: Solicitar Préstamo
+        - link "Cancelar" [ref=f15e83] [cursor=pointer]:
+          - /url: /prestamos/
+    - contentinfo [ref=f15e84]: © 2026 MiCredit — Sistema de Gestión de Microcréditos v1.0
